@@ -2,8 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  *{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: var(--inter); 
+  }
+  ul,li,ol{
+    list-style-type: none;
+  }
+  h1,h2,h3,h4.h5,h6,a{
+    line-height: .8;
+  }
+  a{
+    display: inline-block;
+    text-decoration: none;
+  }
+  img{
+    vertical-align: middle;
+  }
+
+}
+:root{
+  --primary-fff: #FFFFFF;
+  --primary-363: #363738;
+  --secondary-f5f: #F5F5F5;
+  --secondary-fef: #FEFAF1;
+  --text-faf: #FAFAFA;
+  --text-7d8: #7D8184;
+  --text2-black: #000000;
+  --secondary2-db44: #DB4444;
+  --button-black: #000000;
+  --button-green: #00FF66;
+  --button-red: #DB4444;
+  --hover-btn-red: #E07575;
+  --hover-btn-sky: #A0BCE0;
+  --poppins: "Poppins", sans-serif;
+  --inter: "Inter", sans-serif;
+
+}
+h1{
+  font-size: var(--inter);
 }
 
