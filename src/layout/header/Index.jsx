@@ -13,11 +13,7 @@ const Header = () => {
           </p>
         </div>
         <div className=''>
-          {/* <p className='text-text-faf text-[.875rem] font-normal leading-[1.313rem] capitalize'>english</p>
-          <span className='text-[1.5rem] text-text-faf cursor-pointer'>
-            <IoIosArrowDown />
-          </span> */}
-          <select name="" id="" className='text-text-faf text-[.875rem] bg-transparent font-normal leading-[1.313rem] capitalize border-none'>
+          <select name="" id="" className='text-text-faf text-[.875rem] bg-transparent font-normal leading-[1.313rem] capitalize border-none cursor-pointer'>
             <option value="#" className='bg-transparent'>English</option>
             <option value="#">bangla</option>
             <option value="#">Arabic</option>

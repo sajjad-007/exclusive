@@ -76,9 +76,9 @@ h1{
     position: absolute;
     right: -4px;
     top: -10px;
-    height: 20px;
-    width: 20px;
-    font-size: 15px;
+    height: 17px;
+    width: 17px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,3 +87,13 @@ h1{
     border-radius: 100%;
   }
 }
+@layer components {
+  .account_dropdown_span {
+    @apply text-2xl text-text-faf cursor-pointer group-hover:text-black transition-all ease-linear duration-300 ;
+  }
+};
+@layer components {
+  .account_dropdown_heading {
+    @apply text-text-faf text-center font-poppins text-sm font-medium leading-5 capitalize cursor-pointer group-hover:text-black ;
+  }
+};
