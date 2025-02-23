@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import "./navbar.css"
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosStarOutline, IoMdHeartEmpty } from "react-icons/io";
 import { MdShoppingCart } from "react-icons/md";
@@ -84,7 +83,7 @@ const Navbar = () => {
                         className='py-2 px-6 bg-secondary-f5f rounded text-xs font-poppins font-normal leading-4 text-black '
                         placeholder='What are you looking for?'
                         />
-                        <span className='absolute right-[45%] text-lg top-1/2 -translate-y-1/2 '>
+                        <span className='absolute right-[43%] text-lg top-1/2 -translate-y-1/2 '>
                             <IoSearchOutline />
                         </span>
                         <div className='flex items-center gap-4'>
