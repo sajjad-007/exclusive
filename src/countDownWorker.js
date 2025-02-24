@@ -5,7 +5,7 @@ self.onmessage = (event) =>{
             clearInterval(stop)
         } else {
             time = time - 1000
-            self.postMessage(time)
+             self.postMessage(time)
         }
     }, 1000);
 }

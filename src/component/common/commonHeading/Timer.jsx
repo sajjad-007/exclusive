@@ -3,7 +3,7 @@ import { IoEllipsisVertical } from 'react-icons/io5'
 
 const Timer = () => {
     // days > hours > minute > second > milisecond
-    const [time,setTime] = useState(90 * 24 * 60 * 60 * 1000)
+    const [time,setTime] = useState(1 * 24 * 60 * 60 * 1000)
     //javascript web worker
     useEffect(()=>{
         const worker = new Worker(new URL("../../../countDownWorker.js", import.meta.url))
@@ -32,7 +32,7 @@ const Timer = () => {
     const {days,hours,minute,second} = formatTime(time)
   return (
     <div className='main-div flex gap-4'>
-        {/* //days */}
+        {/* // days */}
         <div className='flex items-center gap-x-2'>
             <div className='first'>
                 <span className='text-text2-black font-poppins text-sm font-medium capitalize leading-5'>days</span>

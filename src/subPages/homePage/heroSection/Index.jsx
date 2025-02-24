@@ -23,12 +23,12 @@ const HeroSection = () => {
             borderRadius: "10px",
             padding: "10px",
             position: "absolute",
-            left: "50%",
-            bottom: "20px",
-            transform: "translateX(-50%)"
+            left: "38%",
+            bottom: "12px",
+            // transform: "translateX(-50%)"
           }}
         >
-          <ul style={{ margin: "0px", display:"flex", gap: "5px",  }}> {dots} </ul>
+          <ul style={{ margin: "0px", display:"flex", gap: "0px",  }}> {dots} </ul>
         </div>
       ),
       customPaging: i => (

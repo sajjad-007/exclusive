@@ -2,8 +2,41 @@ import React from 'react'
 import Heading from '../../../component/common/commonHeading/Heading'
 import Timer from '../../../component/common/commonHeading/Timer'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+import ProductCart from '../../../component/common/commonHeading/ProductCart'
+import Slider from "react-slick";
 
 const FlashSales = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 3,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
+  };
+  //arrows right and left 
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "red", position: 'absolute',top: '-60px' }}
+        onClick={onClick}
+      />
+    );
+  }
+  
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "green", position: 'absolute',top: '-60px', right: '15px'}}
+        onClick={onClick}
+      />
+    );
+  }
   return (
     <section className='pb-16'>
         <div className="container">
@@ -28,6 +61,15 @@ const FlashSales = () => {
                     </span>
                   </div>
                 </div>
+              </div>
+              <div className="slider-container mt-10">
+                <Slider {...settings}>
+                  {[...new Array(5)].map((_,index)=>(
+                    <div className='mr-[30px]'>
+                      <ProductCart/>
+                    </div>
+                  ))}
+                </Slider>
               </div>
             </div>
         </div>
