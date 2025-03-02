@@ -97,3 +97,8 @@ h1{
     @apply text-text-faf text-center font-poppins text-sm font-medium leading-5 capitalize cursor-pointer group-hover:text-black ;
   }
 };
+@layer components {
+  .common_btn {
+    @apply px-12 py-4 bg-secondary2-db44 rounded text-primary-fff font-poppins text-base font-medium leading-6 hover:bg-primary-fff hover:text-text2-black border-[1px] hover:border-2 hover:border-solid hover:border-text2-black transition-all ease-linear duration-200 capitalize;
+  }
+};

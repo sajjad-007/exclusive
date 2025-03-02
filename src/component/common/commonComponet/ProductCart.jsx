@@ -9,7 +9,7 @@ import { FaStar } from 'react-icons/fa'
 const ProductCart = () => {
     
   return (
-    <div className='main w-[270px]'>
+    <div className='main w-[275px]'>
         <div className="main_wrapper">
             {/* //part one */}
             <div className="img_part w-full h-[270px] mb-5 bg-text-faf rounded group relative overflow-hidden">
@@ -41,7 +41,6 @@ const ProductCart = () => {
                     </div>
             </div>
             {/* //part two */}
-           
             <div className="comment part flex flex-col gap-2">
                 <h3 className='text-text2-black font-poppins text-lg font-medium leading-6 capitalize  w-[260px]'>hAVIT hV-g92 gamepad</h3>
                 <div className='flex gap-3'>

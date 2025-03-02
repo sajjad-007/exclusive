@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { IoEllipsisVertical } from 'react-icons/io5'
 
-const Timer = () => {
+const Timer = ({timeOffer}) => {
     // days > hours > minute > second > milisecond
-    const [time,setTime] = useState(1 * 24 * 60 * 60 * 1000)
+    const [time,setTime] = useState(timeOffer * 24 * 60 * 60 * 1000 || 0)
     //javascript web worker
     useEffect(()=>{
         const worker = new Worker(new URL("../../../countDownWorker.js", import.meta.url))

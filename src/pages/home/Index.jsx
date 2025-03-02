@@ -1,5 +1,5 @@
-import FlashSales from "../../subPages/homePage/flash/Index"
-import HeroSection from "../../subPages/homePage/heroSection/Index"
+import FlashSales from "../../component/homePage/flash/Index"
+import HeroSection from "../../component/homePage/heroSection/Index"
 
 
 
