@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
 import Heading from "./Heading";
@@ -7,55 +7,28 @@ import ProductCart from "./ProductCart";
 import ProductSkeleton from "../../helpers/ProductSkeleton";
 
 const ProductCommonLayouts = ({
-  ProductCart = () => <ProductSkeleton/>,
+  ProductCart = () => <ProductSkeleton />,
   timeStamp = false,
   timeOffer = 0,
   isArrow = false,
   heading = "today's sales",
   description = "flash sales",
+  partialItemShow = 5,
 }) => {
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: partialItemShow,
     slidesToScroll: 3,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
   };
   //arrows right and left
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          background: "red",
-          position: "absolute",
-          top: "-60px",
-        }}
-        onClick={onClick}
-      />
-    );
+  let slideRef = useRef(null)
+  let next = () =>{
+    slideRef.current.slickPrev();
   }
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          background: "green",
-          position: "absolute",
-          top: "-60px",
-          right: "15px",
-        }}
-        onClick={onClick}
-      />
-    );
+  let prev = () =>{
+    slideRef.current.slickNext();
   }
   return (
     <div>
@@ -75,23 +48,29 @@ const ProductCommonLayouts = ({
               {/* arrow */}
               {isArrow && (
                 <div className="flex gap-2 justify-end w-[20%] cursor-pointer">
-                  <div className=" bg-secondary-f5f rounded-3xl h-12 w-12 flex items-center justify-center hover:bg-black hover:text-text-faf transition-all ease-linear duration-300">
+                  <h1
+                    onClick={next}
+                    className="bg-secondary-f5f rounded-3xl h-12 w-12 flex items-center justify-center hover:bg-black hover:text-text-faf transition-all ease-linear duration-300"
+                  >
                     <span className="text-lg">
                       <FaArrowLeft />
                     </span>
-                  </div>
-                  <div className=" bg-secondary-f5f rounded-3xl h-12 w-12 flex items-center justify-center hover:bg-black hover:text-text-faf transition-all ease-linear duration-300">
+                  </h1>
+                  <h1
+                    onClick={prev}
+                    className=" bg-secondary-f5f rounded-3xl h-12 w-12 flex items-center justify-center hover:bg-black hover:text-text-faf transition-all ease-linear duration-300"
+                  >
                     <span className="text-lg">
                       <FaArrowRight />
                     </span>
-                  </div>
+                  </h1>
                 </div>
               )}
             </div>
             {/* slider section */}
             <div className="slider-container mt-10">
-              <Slider {...settings}>
-                {[...new Array(5)].map((_, index) => (
+              <Slider ref={slideRef} {...settings}>
+                {[...new Array(partialItemShow || 0)].map((_, index) => (
                   <div className="mr-[30px]">
                     <ProductCart />
                   </div>

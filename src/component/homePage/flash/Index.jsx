@@ -13,8 +13,8 @@ const FlashSales = () => {
             ProductCart = {ProductCart}
             timeStamp = {true}
             timeOffer = {1}
-            heading = "today's"
-            description = "flash sales"
+            heading = {"today's"}
+            description = {"flash sales"}
             isArrow = {true}
           />
           <div className="pb-20 ">
