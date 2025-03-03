@@ -14,12 +14,13 @@ const ProductCommonLayouts = ({
   heading = "today's sales",
   description = "flash sales",
   partialItemShow = 5,
+  componentData = [],
 }) => {
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: partialItemShow,
+    slidesToShow: partialItemShow || 4,
     slidesToScroll: 3,
   };
   //arrows right and left
@@ -70,9 +71,9 @@ const ProductCommonLayouts = ({
             {/* slider section */}
             <div className="slider-container mt-10">
               <Slider ref={slideRef} {...settings}>
-                {[...new Array(partialItemShow || 0)].map((_, index) => (
-                  <div className="mr-[30px]">
-                    <ProductCart />
+                {componentData?.map((item, index) => (
+                  <div className={partialItemShow > 4 ? "pr-8" : "pr-6"}>
+                    <ProductCart itemData={item ? item : {}}/>
                   </div>
                 ))}
               </Slider>

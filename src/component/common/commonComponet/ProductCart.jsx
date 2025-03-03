@@ -9,7 +9,7 @@ import { FaStar } from 'react-icons/fa'
 const ProductCart = () => {
     
   return (
-    <div className='main w-[275px]'>
+    <div className='main w-[270px]'>
         <div className="main_wrapper">
             {/* //part one */}
             <div className="img_part w-full h-[270px] mb-5 bg-text-faf rounded group relative overflow-hidden">
