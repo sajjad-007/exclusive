@@ -16,6 +16,7 @@ const ProductCommonLayouts = ({
   partialItemShow = 5,
   componentData = [],
   isLoading = false,
+  isViewBtn = false,
 }) => {
   const settings = {
     dots: false,
@@ -38,13 +39,13 @@ const ProductCommonLayouts = ({
         <div className="container">
           <div className="main_wrapper">
             {/* head section */}
-            <div className="headPart flex items-end">
+            <div className="headPart flex items-end justify-between">
               {/* heading */}
-              <div className="w-[30%]">
+              <div className="w-[40%]">
                 <Heading title={heading} description={description} />
               </div>
               {/* Timer */}
-              <div className="mb-[5px] w-[50%]">
+              <div className="mb-[5px] w-[40%]">
                 {timeStamp && <Timer timeOffer={timeOffer} />}
               </div>
               {/* arrow */}
@@ -68,9 +69,14 @@ const ProductCommonLayouts = ({
                   </h1>
                 </div>
               )}
+              {isViewBtn && (
+                <div>
+                  <button className="common_btn">view all</button>
+                </div>
+              )}
             </div>
             {/* slider section */}
-            <div className="slider-container mt-10">
+            <div className="slider-container mt-10 ">
               <Slider ref={slideRef} {...settings}>
                 {isLoading
                   ? [...new Array(5)]?.map((item, index) => (
@@ -78,14 +84,11 @@ const ProductCommonLayouts = ({
                         <ProductSkeleton />
                       </div>
                     ))
-                  : 
-                  componentData?.map((item, index) => (
-                    <div className={partialItemShow > 4 ? "pr-8" : "pr-6 "} >
-                      <ProductCart itemData={item ? item : {}}/>
-                    </div>
-                  ))
-                }
-               
+                  : componentData?.map((item, index) => (
+                      <div className={partialItemShow > 4 ? "pr-8" : "pr-6 "}>
+                        <ProductCart itemData={item ? item : {}} />
+                      </div>
+                    ))}
               </Slider>
             </div>
           </div>
