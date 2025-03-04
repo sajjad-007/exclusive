@@ -15,6 +15,7 @@ const ProductCommonLayouts = ({
   description = "flash sales",
   partialItemShow = 5,
   componentData = [],
+  isLoading = false,
 }) => {
   const settings = {
     dots: false,
@@ -24,13 +25,13 @@ const ProductCommonLayouts = ({
     slidesToScroll: 3,
   };
   //arrows right and left
-  let slideRef = useRef(null)
-  let next = () =>{
+  let slideRef = useRef(null);
+  let next = () => {
     slideRef.current.slickPrev();
-  }
-  let prev = () =>{
+  };
+  let prev = () => {
     slideRef.current.slickNext();
-  }
+  };
   return (
     <div>
       <section className="pb-16">
@@ -71,11 +72,20 @@ const ProductCommonLayouts = ({
             {/* slider section */}
             <div className="slider-container mt-10">
               <Slider ref={slideRef} {...settings}>
-                {componentData?.map((item, index) => (
-                  <div className={partialItemShow > 4 ? "pr-8" : "pr-6"}>
-                    <ProductCart itemData={item ? item : {}}/>
-                  </div>
-                ))}
+                {isLoading
+                  ? [...new Array(5)]?.map((item, index) => (
+                      <div className={partialItemShow > 4 ? "pr-8" : "pr-6"}>
+                        <ProductSkeleton />
+                      </div>
+                    ))
+                  : 
+                  componentData?.map((item, index) => (
+                    <div className={partialItemShow > 4 ? "pr-8" : "pr-6 "} >
+                      <ProductCart itemData={item ? item : {}}/>
+                    </div>
+                  ))
+                }
+               
               </Slider>
             </div>
           </div>

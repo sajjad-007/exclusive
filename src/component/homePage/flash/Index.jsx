@@ -5,9 +5,6 @@ import { useGetAllProductQuery } from '../../../features/Api/productApi'
 
 const FlashSales = () => {
   const { data, error, isLoading } = useGetAllProductQuery()
-  console.log(data)
-  console.log(isLoading)
-  console.log(error)
   return (
     <section>
       <div className="container">
@@ -20,7 +17,9 @@ const FlashSales = () => {
             description = {"flash sales"}
             isArrow = {true}
             partialItemShow={4}
-            componentData={[...new Array(10)]}
+            componentData={data?.products}
+            isLoading={isLoading}
+
           />
           <div className="pb-20 ">
             <button className="common_btn">

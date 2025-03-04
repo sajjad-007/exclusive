@@ -54,7 +54,7 @@ const Category = () => {
         <ProductCommonLayouts 
             ProductCart={CategoryCart}
             isArrow = {true}
-            partialItemShow={7}
+            partialItemShow={6}
             heading={"Categories"}
             description={"Browse By Category"}
             componentData={categoryBrowse}
