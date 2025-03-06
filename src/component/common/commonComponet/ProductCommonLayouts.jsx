@@ -17,13 +17,16 @@ const ProductCommonLayouts = ({
   componentData = [],
   isLoading = false,
   isViewBtn = false,
+  rows = 1,
 }) => {
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: partialItemShow || 4,
-    slidesToScroll: 3,
+    slidesToScroll: partialItemShow - 1,
+    rows: rows,
+    autoplay: true,
   };
   //arrows right and left
   let slideRef = useRef(null);
@@ -76,7 +79,7 @@ const ProductCommonLayouts = ({
               )}
             </div>
             {/* slider section */}
-            <div className="slider-container mt-10 ">
+            <div className="slider-container mt-10">
               <Slider ref={slideRef} {...settings}>
                 {isLoading
                   ? [...new Array(5)]?.map((item, index) => (

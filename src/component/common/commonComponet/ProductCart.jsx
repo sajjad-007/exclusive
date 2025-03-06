@@ -8,7 +8,7 @@ import Star from "./Star";
 
 const ProductCart = ({ itemData }) => {
   return (
-    <div className="main w-full">
+    <div className="main w-full my-8">
       <div className="main_wrapper">
         {/* //part one */}
         <div className="img_part w-full h-[230px] mb-5 bg-text-faf rounded group relative overflow-hidden ">

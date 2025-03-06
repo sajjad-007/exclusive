@@ -6,7 +6,7 @@ const Timer = ({timeOffer}) => {
     const [time,setTime] = useState(timeOffer * 24 * 60 * 60 * 1000 || 0)
     //javascript web worker
     useEffect(()=>{
-        const worker = new Worker(new URL("../../../countDownWorker.js", import.meta.url))
+        const worker = new Worker(new URL("../../../worker/countDownWorker.js", import.meta.url))
         worker.postMessage(time)
         worker.onmessage = (e) =>{
             setTime(e.data)

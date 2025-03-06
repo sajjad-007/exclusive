@@ -1,6 +1,33 @@
-import React from "react";
-import mics from '../../../assets/exprience.png'
+import React, { useEffect ,useState} from "react";
+import mics from "../../../assets/exprience.png";
+
 const Experience = () => {
+  // days > hours > minute > second > milisecond
+  const [time, setTime] = useState(4 * 24 * 60 * 60 * 1000 || 0);
+  //javascript web worker
+  useEffect(() => {
+    const worker = new Worker(
+      new URL("../../../worker/countDownWorker2.js", import.meta.url)
+    );
+    worker.postMessage(time);
+    worker.onmessage = (e) => {
+      setTime(e.data);
+    };
+  }, []);
+
+  const formatTime = (milisecond) => {
+    //total time
+    const total_second = parseInt(Math.floor(milisecond / 1000));
+    const total_minute = parseInt(Math.floor(total_second / 60));
+    const total_hours = parseInt(Math.floor(total_minute / 60));
+    //actual time
+    const days = parseInt(Math.floor(total_hours / 24));
+    const second = parseInt(Math.floor(total_second % 60));
+    const minute = parseInt(Math.floor(total_minute % 60));
+    const hours = parseInt(Math.floor(total_hours % 60));
+    return { days, hours, minute, second };
+  };
+  const { days, hours, minute, second } = formatTime(time);
   return (
     <section className="Experience mt-[140px] mb-[71px] ">
       <div className="container">
@@ -15,7 +42,7 @@ const Experience = () => {
             <div className="time flex gap-x-6">
               <div className="h-[62px] w-[62px] bg-primary-fff rounded-full text-button-black flex flex-col items-center justify-center capitalize py-[14px] px-[15px]">
                 <p className="text-text2-black font-poppins text-lg font-semibold leading-6">
-                  5
+                  {days}
                 </p>
                 <p className="text-text2-black font-poppins text-xs font-medium leading-[18px]">
                   days
@@ -23,7 +50,7 @@ const Experience = () => {
               </div>
               <div className="h-[62px] w-[62px] bg-primary-fff rounded-full text-button-black flex flex-col items-center justify-center capitalize py-[14px] px-[15px]">
                 <p className="text-text2-black font-poppins text-lg font-semibold leading-6">
-                  23
+                  {hours}
                 </p>
                 <p className="text-text2-black font-poppins text-xs font-medium leading-[18px]">
                   hours
@@ -31,15 +58,15 @@ const Experience = () => {
               </div>
               <div className="h-[62px] w-[62px] bg-primary-fff rounded-full text-button-black flex flex-col items-center justify-center capitalize py-[14px] px-[15px]">
                 <p className="text-text2-black font-poppins text-lg font-semibold leading-6">
-                  19
+                  {minute}
                 </p>
                 <p className="text-text2-black font-poppins text-xs font-medium leading-[18px]">
-                  minutes
+                  minute
                 </p>
               </div>
               <div className="h-[62px] w-[62px] bg-primary-fff rounded-full text-button-black flex flex-col items-center justify-center capitalize py-[14px] px-[15px]">
                 <p className="text-text2-black font-poppins text-lg font-semibold leading-6">
-                  50
+                  {second}
                 </p>
                 <p className="text-text2-black font-poppins text-xs font-medium leading-[18px]">
                   second
@@ -54,8 +81,12 @@ const Experience = () => {
           </div>
           <div className="Experience_img_part  w-1/2 h-fulloverflow-hidden flex items-center justify-center imagShadow bg-button-black">
             <div className="w-[450px] h-full py-11 px-4 overflow-hidden object-cover">
-              <img src={mics} alt="not found" className="w-[568px] h-[327px] bg-no-repeat bg-cover "/>
-            </div> 
+              <img
+                src={mics}
+                alt="not found"
+                className="w-[568px] h-[327px] bg-no-repeat bg-cover "
+              />
+            </div>
           </div>
         </div>
       </div>
