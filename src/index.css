@@ -3,48 +3,53 @@
 @tailwind utilities;
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-  *{
+  @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+  * {
     margin: 0;
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-    font-family: var(--inter); 
+    font-family: var(--inter);
   }
-  ul,li,ol{
+  ul,
+  li,
+  ol {
     list-style-type: none;
   }
-  h1,h2,h3,h4.h5,h6,a{
-    line-height: .8;
+  h1,
+  h2,
+  h3,
+  h4.h5,
+  h6,
+  a {
+    line-height: 0.8;
   }
-  a{
+  a {
     display: inline-block;
     text-decoration: none;
   }
-  img{
+  img {
     vertical-align: middle;
   }
-
 }
-:root{
-  --primary-fff: #FFFFFF;
+:root {
+  --primary-fff: #ffffff;
   --primary-363: #363738;
-  --secondary-f5f: #F5F5F5;
-  --secondary-fef: #FEFAF1;
-  --text-faf: #FAFAFA;
-  --text-7d8: #7D8184;
+  --secondary-f5f: #f5f5f5;
+  --secondary-fef: #fefaf1;
+  --text-faf: #fafafa;
+  --text-7d8: #7d8184;
   --text2-black: #000000;
-  --secondary2-db44: #DB4444;
+  --secondary2-db44: #db4444;
   --button-black: #000000;
-  --button-green: #00FF66;
-  --button-red: #DB4444;
-  --hover-btn-red: #E07575;
-  --hover-btn-sky: #A0BCE0;
+  --button-green: #00ff66;
+  --button-red: #db4444;
+  --hover-btn-red: #e07575;
+  --hover-btn-sky: #a0bce0;
   --poppins: "Poppins", sans-serif;
   --inter: "Inter", sans-serif;
-
 }
-h1{
+h1 {
   font-size: var(--inter);
 }
 
@@ -52,7 +57,7 @@ h1{
   .UnderLine {
     position: relative;
   }
-  .UnderLine::after{
+  .UnderLine::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -61,17 +66,18 @@ h1{
     width: 0;
     background-color: var(--text-7d8);
     /* transform: scale(0); */
-    transition: all linear .4s;
+    transition: all linear 0.4s;
   }
   .UnderLine:hover::after {
     /* transform: scale(1); */
     height: 2px;
     width: 100%;
+    /* color: var(--text-7d8); */
   }
   .numberIcon {
     position: relative;
   }
-  .numberIcon::after{
+  .numberIcon::after {
     content: "4";
     position: absolute;
     right: -4px;
@@ -86,19 +92,37 @@ h1{
     background-color: var(--button-red);
     border-radius: 100%;
   }
+  .imagShadow {
+    position: relative;
+    z-index: 1;
+  }
+  .imagShadow::after {
+    position: absolute;
+    content: "";
+    left: 50%;
+    z-index: -1;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 119px 178px rgba(84, 36, 84, 1);
+    -moz-box-shadow: 0px 0px 119px 178px rgba(84, 36, 84, 1);
+    box-shadow: 0px 0px 119px 178px rgba(84, 36, 84, 1);
+  }
 }
 @layer components {
   .account_dropdown_span {
-    @apply text-2xl text-text-faf cursor-pointer group-hover:text-black transition-all ease-linear duration-300 ;
+    @apply text-2xl text-text-faf cursor-pointer group-hover:text-black transition-all ease-linear duration-300;
   }
-};
+}
 @layer components {
   .account_dropdown_heading {
-    @apply text-text-faf text-center font-poppins text-sm font-medium leading-5 capitalize cursor-pointer group-hover:text-black ;
+    @apply text-text-faf text-center font-poppins text-sm font-medium leading-5 capitalize cursor-pointer group-hover:text-black;
   }
-};
+}
 @layer components {
   .common_btn {
     @apply px-12 py-4 bg-secondary2-db44 rounded text-primary-fff font-poppins text-base font-medium leading-6 hover:bg-primary-fff hover:text-text2-black border-2 border-solid border-secondary2-db44 hover:border-2 hover:border-solid hover:border-text2-black transition-all ease-linear duration-200 capitalize;
   }
-};
+}
