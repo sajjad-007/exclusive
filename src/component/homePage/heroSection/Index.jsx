@@ -17,6 +17,7 @@ const HeroSection = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      autoplay: true,
       appendDots: dots => (
         <div
           style={{

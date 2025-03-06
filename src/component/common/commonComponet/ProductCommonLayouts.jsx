@@ -18,6 +18,7 @@ const ProductCommonLayouts = ({
   isLoading = false,
   isViewBtn = false,
   rows = 1,
+  autoPlay = false,
 }) => {
   const settings = {
     dots: false,
@@ -26,7 +27,7 @@ const ProductCommonLayouts = ({
     slidesToShow: partialItemShow || 4,
     slidesToScroll: partialItemShow - 1,
     rows: rows,
-    autoplay: true,
+    autoplay: autoPlay,
   };
   //arrows right and left
   let slideRef = useRef(null);

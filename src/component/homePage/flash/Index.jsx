@@ -19,6 +19,7 @@ const FlashSales = () => {
             partialItemShow={4}
             componentData={data?.products}
             isLoading={isLoading}
+            autoPlay={true}
 
           />
           <div className="pb-20 ">

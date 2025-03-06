@@ -1,9 +1,9 @@
 import React, { useEffect ,useState} from "react";
 import mics from "../../../assets/exprience.png";
 
-const Experience = () => {
+const Experience = ({duration}) => {
   // days > hours > minute > second > milisecond
-  const [time, setTime] = useState(4 * 24 * 60 * 60 * 1000 || 0);
+  const [time, setTime] = useState(duration * 24 * 60 * 60 * 1000 || 0);
   //javascript web worker
   useEffect(() => {
     const worker = new Worker(
