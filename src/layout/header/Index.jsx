@@ -6,7 +6,6 @@ const Header = () => {
     <header className=' font-poppins py-3 bg-text2-black'>
     <div className="header_main container">
       <div className='main-wrapper flex items-center justify-between'>
-        <div></div>
         <div>
           <p className='text-text-faf text-[.875rem] font-normal leading-[1.313rem] capitalize'>
             Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!

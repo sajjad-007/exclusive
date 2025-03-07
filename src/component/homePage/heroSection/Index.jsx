@@ -88,8 +88,8 @@ const HeroSection = () => {
                   <div className="slider-container h-[350px] w-full object-cover">
                       <Slider {...settings}>
                         {/* an emty array for map */}
-                        {[...new Array(10)].map((_,index)=>(
-                          <div key={index} className='h-[340px] w-full object-cover flex'>
+                        {[...new Array(10)].map((item,index)=>(
+                          <div key={item} className='h-[340px] w-full object-cover flex'>
                             <img src={heroImg} alt="not found"  className='h-full w-full object-cover'/>
                           </div>
                         ))}

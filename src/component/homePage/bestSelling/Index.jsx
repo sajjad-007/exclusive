@@ -18,7 +18,6 @@ const BestSelling = () => {
             isLoading={isLoading}
             autoPlay={true}
           />
-
         </div>
       </div>
     </section>

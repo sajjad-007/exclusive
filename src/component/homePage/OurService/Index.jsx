@@ -30,7 +30,7 @@ const OurService = () => {
         <div className="flex justify-evenly items-center">
 
             {service?.map((item)=>(
-                <div className="main_wrapper  flex flex-col gap-6 items-center justify-center">
+                <div className="main_wrapper  flex flex-col gap-6 items-center justify-center" key={item.id}>
                 <div className="icon">
                     <div className="w-20 h-20 bg-text-7d8 rounded-full flex items-center justify-center">
                     <span className="w-14 h-14 rounded-full bg-button-black flex items-center justify-center text-4xl text-primary-fff">

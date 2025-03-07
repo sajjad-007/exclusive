@@ -58,6 +58,7 @@ const Category = () => {
             heading={"Categories"}
             description={"Browse By Category"}
             componentData={categoryBrowse}
+            autoPlay={true}
         />
     </div>
   )

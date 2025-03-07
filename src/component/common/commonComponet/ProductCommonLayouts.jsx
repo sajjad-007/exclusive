@@ -90,7 +90,7 @@ const ProductCommonLayouts = ({
                     ))
                   : componentData?.map((item, index) => (
                       <div className={partialItemShow > 4 ? "pr-8" : "pr-6 "}>
-                        <ProductCart itemData={item ? item : {}} />
+                        <ProductCart itemData={item ? item : {}} key={item.key} />
                       </div>
                     ))}
               </Slider>
