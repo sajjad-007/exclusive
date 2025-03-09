@@ -8,7 +8,7 @@ import Star from "./Star";
 
 const ProductCart = ({ itemData }) => {
   return (
-    <div className="main w-full my-8">
+    <div className="main w-full my-[20px]">
       <div className="main_wrapper">
         {/* //part one */}
         <div className="img_part w-full h-[230px] mb-5 bg-text-faf rounded group relative overflow-hidden ">
@@ -52,7 +52,15 @@ const ProductCart = ({ itemData }) => {
         </div>
         {/* //part two */}
         <div className="comment part flex flex-col gap-2">
-          <h3 className="text-text2-black font-poppins text-lg font-medium leading-6 capitalize  w-full truncate">
+          <h3
+            className="text-text2-black font-poppins text-lg font-medium leading-6 capitalize w-full truncate"
+            style={{
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+              maxWidth: "200px",
+            }}
+          >
             {itemData ? itemData.title : "hAVIT hV-g92 gamepad"}
           </h3>
           <div className="flex gap-3">
