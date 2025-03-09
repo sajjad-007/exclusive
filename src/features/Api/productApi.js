@@ -12,7 +12,9 @@ export const productApi = createApi({
     GetBestSellingProduct: builder.query({
       query: () => '/products/category/smartphones'
     }),
-    
+    GetProductCategoryList: builder.query({
+      query: () => '/products/category-list'
+    })
     // getPokemonByName: builder.query({
     //   query: (name) => `pokemon/${name}`,
     // }),
@@ -22,4 +24,4 @@ export const productApi = createApi({
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 // to use this "use + GetAllProduct + Query"
-export const { useGetAllProductQuery, useGetBestSellingProductQuery } = productApi
+export const { useGetAllProductQuery, useGetBestSellingProductQuery,useGetProductCategoryListQuery } = productApi

@@ -20,6 +20,7 @@ export default {
         'button-red': 'var(--button-red)',
         'hover-btn-red': 'var(--hover-btn-red)',
         'hover-btn-sky': 'var(--hover-btn-sky)',
+        'black2626': 'var(--black2626)',
       },
       fontFamily: {
         poppins: "var(--poppins)", 

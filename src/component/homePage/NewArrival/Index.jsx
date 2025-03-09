@@ -19,7 +19,7 @@ const NewArrival = () => {
               className="h-full w-full object-fill"
             />
           </div>
-          <div className="part2 w-[48%] h-full flex flex-col gap-[60px] ">
+          <div className="part2 w-[48%] h-full flex flex-col gap-[30px] ">
             <div className="child_part1 w-full h-[284px]">
               <img
                 src={womenFashion}
@@ -27,15 +27,15 @@ const NewArrival = () => {
                 className="h-full w-full object-fill"
               />
             </div>
-            <div className="child_part2 flex gap-[2%]">
-              <div className="img1 w-1/2">
+            <div className="child_part2 flex gap-[30px]">
+              <div className="img1 w-1/2 h-[284px]">
                 <img
                   src={speaker}
                   alt="not found"
                   className="h-full w-full object-fill"
                 />
               </div>
-              <div className="img2 w-1/2">
+              <div className="img2 w-1/2 h-[284px]">
                 <img
                   src={perfume}
                   alt="not found"
