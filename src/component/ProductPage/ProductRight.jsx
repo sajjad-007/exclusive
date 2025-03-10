@@ -9,7 +9,9 @@ const ProductRight = () => {
   let myLength = data?.limit;
   let pageLength = Math.ceil(myLength / 9);
   let handlePaging = (index) => {
-    setpage(index);
+    if (index > 0 && index <= pageLength) {
+      setpage(index);
+    }
   };
   return (
     <div className="w-[70%] pt-10">
@@ -44,10 +46,18 @@ const ProductRight = () => {
         </div>
       )}
 
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-2 ">
         <div className="mt-11 ">
           <nav aria-label="Page navigation example">
             <ul className="inline-flex -space-x-px text-xl h-10 ">
+              <li>
+                <span
+                  className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer"
+                  onClick={()=> handlePaging(page - 1)} 
+                >
+                  Previous
+                </span>
+              </li>
               {[...new Array(pageLength || 5)].map((_, index) => (
                 <li>
                   <span
@@ -63,7 +73,10 @@ const ProductRight = () => {
                 </li>
               ))}
               <li>
-                <span className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer" onClick={()=> handlePaging(page + 1)}>
+                <span
+                  className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer"
+                  onClick={() => handlePaging(page + 1)}
+                >
                   Next
                 </span>
               </li>
