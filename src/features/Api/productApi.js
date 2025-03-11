@@ -18,6 +18,9 @@ export const productApi = createApi({
     GetSingleProductDetails: builder.query({
       query: (id) => `products/${id}`,
     }),
+    GetProductByCategory: builder.query({
+      query: (categoryName) => `/products/category/${categoryName}`
+    })
     // getPokemonByName: builder.query({
     //   query: (name) => `pokemon/${name}`,
     // }),
@@ -32,4 +35,5 @@ export const {
   useGetBestSellingProductQuery,
   useGetProductCategoryListQuery,
   useGetSingleProductDetailsQuery,
+  useGetProductByCategoryQuery,
 } = productApi;

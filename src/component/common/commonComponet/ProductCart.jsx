@@ -61,25 +61,25 @@ const ProductCart = ({ itemData }) => {
               maxWidth: "200px",
             }}
           >
-            {itemData ? itemData.title : "hAVIT hV-g92 gamepad"}
+            {itemData ? itemData?.title : "hAVIT hV-g92 gamepad"}
           </h3>
           <div className="flex gap-3">
             <span className="font-poppins text-secondary2-db44 text-[16px] font-medium leading-6">
               $
               {UseDiscountCalculation(
-                itemData.price,
-                itemData.discountPercentage
+                itemData?.price,
+                itemData?.discountPercentage
               ).toFixed(2)}
               {/* ${itemData ? itemData.price : "120"} */}
             </span>
             <span className="font-poppins text-text-7d8 text-[16px] font-medium leading-6 line-through">
-              ${itemData ? itemData.price : "120"}
+              ${itemData ? itemData?.price : "120"}
             </span>
           </div>
           <div className="start mt-2 flex">
             {/* {[...new Array(5)].map((_, index) => ( */}
             <span>
-              <Star rating={itemData && itemData.rating} />
+              <Star rating={itemData && itemData?.rating} />
             </span>
             {/* ))} */}
             <h3 className="text-text-7d8 opacity-50 font-medium text-lg font-popins">

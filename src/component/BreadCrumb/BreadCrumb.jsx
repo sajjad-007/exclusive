@@ -30,7 +30,7 @@ const BreadCrumb = () => {
             <>
               <span className="text-xl text-text-7d8">/</span>
               <div>
-                <span className="text-text-7d8 font-poppins text-sm font-normal leading-5 capitalize ">
+                <span className="text-text-7d8 font-poppins text-sm font-normal leading-5 capitalize " key={index}>
                   <Link to={BreadCrumb}>{name}</Link>
                 </span>
               </div>

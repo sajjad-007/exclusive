@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import Heading from "./Heading";
 import Timer from "./Timer";
 import ProductCart from "./ProductCart";
+// import ProductSkeleton from "../../Skeleton/ProductSkeleton";
 import ProductSkeleton from "../../helpers/ProductSkeleton";
 
 const ProductCommonLayouts = ({

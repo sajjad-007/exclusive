@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 
 const ProductSkeleton = () => {
   return (
-    <div className="w-full animate-pulse my-8">
+    <div className="w-full animate-pulse my-8 overflow-hidden">
       <div className="w-full h-[230px] mb-5 bg-gray-200 rounded relative overflow-hidden"></div>
       <div className="flex flex-col gap-2">
         <div className="h-6 bg-gray-200 w-3/4 rounded"></div>
