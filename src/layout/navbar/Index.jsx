@@ -34,11 +34,11 @@ const Navbar = () => {
     },
     {
       id: 2,
-      item: "contact",
+      item: "about",
     },
     {
       id: 3,
-      item: "about",
+      item: "contact",
     },
     {
       id: 4,

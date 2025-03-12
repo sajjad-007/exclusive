@@ -10,15 +10,23 @@ import ProductsDetailsSkeleton from "../../component/helpers/ProductsDetailsSkel
 import { useParams } from "react-router-dom";
 import Heading from "../../component/common/commonComponet/Heading";
 import ProductCart from "../../component/common/commonComponet/ProductCart";
-import ProductSkeleton from "../../component/helpers/ProductSkeleton";
+// import ProductSkeleton from "../../component/helpers/ProductSkeleton";
+import Slider from "react-slick";
 const ProductDetails = () => {
   const params = useParams();
   const { data, error, isLoading } = useGetSingleProductDetailsQuery(
     params?.id
   );
-  const relatedCategory = useGetProductByCategoryQuery("smartphones");
+  const relatedCategory = useGetProductByCategoryQuery('Mens-Shirts');
   const mapRelatedCategory = relatedCategory?.data?.products;
-
+  let settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+  };
   return (
     <div className="pt-20 pb-36">
       <div className="container">
@@ -42,13 +50,14 @@ const ProductDetails = () => {
         {/* bottom part */}
         <div className="main_bottom mt-36">
           <Heading title="related item" description={false} />
-          <div className="flex flex-wrap gap-7 items-center justify-between">
-            {mapRelatedCategory?.map((item, index) => (
-              // {console.log(item)}
-              <div className="" key={index}>
-                <ProductCart itemData={item} />
-              </div>
-            ))}
+          <div className="cursor-grab">
+            <Slider {...settings} >
+              {mapRelatedCategory?.map((item, index) => (
+                <div className="pr-7" key={index}>
+                  <ProductCart itemData={item} />
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ import Contactpage from "./pages/contact/Index";
 import SignuPage from "./pages/signup/Index";
 import ProductPage from "./pages/Product/Index";
 import ProductDetails from "./pages/ProductDetails/Index";
+import LogIn from "./pages/Login/LogIn";
 
 function App() {
   const router = createBrowserRouter(
@@ -20,11 +21,12 @@ function App() {
         <Route path="/home" element={<Homepage/>}/>
         <Route path="/" element={<Homepage/>}/>
         <Route path="/contact" element={<Contactpage/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/product" element={<ProductPage/>}/>
+        {/* <Route path="/about" element={<About/>}/> */}
+        <Route path="/about" element={<ProductPage/>}/>
         <Route path="/productDetails" element={<ProductPage/>}/>
         <Route path="/productDetails/:id" element={<ProductDetails/>}/>
         <Route path="/signup" element={<SignuPage/>}/>
+        <Route path="/login" element={<LogIn/>}/>
       </Route>
     )
   );
