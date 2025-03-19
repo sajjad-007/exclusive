@@ -36,7 +36,7 @@ const LogIn = () => {
                 <input
                   type="text"
                   placeholder="password"
-                  className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6 capitalize"
+                  className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6 "
                 />
                 <div className="flex items-center gap-[87px]">
                   <Button text="log in" className="common_btn py-4 px-12" />
