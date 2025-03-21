@@ -34,7 +34,7 @@ const Navbar = () => {
     },
     {
       id: 2,
-      item: "about",
+      item: "product",
     },
     {
       id: 3,

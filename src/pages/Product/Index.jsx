@@ -1,11 +1,15 @@
 import React from "react";
 import ProductLeft from "../../component/ProductPage/ProductLeft";
-import { useGetProductCategoryListQuery } from "../../features/Api/productApi";
+import { useGetCategoryListQuery, useGetSubCategoryQuery } from "../../features/Api/exclusiveApi";
 import BreadCrumb from "../../component/BreadCrumb/BreadCrumb";
 import ProductRight from "../../component/ProductPage/ProductRight";
 
 const ProductPage = () => {
-  const { data, error, isLoading } = useGetProductCategoryListQuery();
+  const { data,isLoading,error} = useGetCategoryListQuery();
+  const categoryList = data?.data.map((item)=>{
+    return item
+  })
+  const subCategory = useGetSubCategoryQuery()
   return (
     <div className="mb-[104px]">
       <div className="container">
@@ -14,7 +18,7 @@ const ProductPage = () => {
         </div>
         <div className="flex justify-between gap-[97px]">
           <ProductLeft
-            categoryData={data}
+            categoryData={categoryList}
             isLoading={isLoading}
             error={error}
           />

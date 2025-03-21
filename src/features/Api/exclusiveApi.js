@@ -1,19 +1,38 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define a service using a base URL and expected endpoints
 export const exclusiveApi = createApi({
-  reducerPath: 'exclusive',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api/v1/' }),
+  reducerPath: "exclusive",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api/v1/" }),
   endpoints: (builder) => ({
-   GetAllBanner: builder.query({
-    query: () => `/banner`
-   }),
-   GetCategoryList: builder.query({
-    query: () => '/category'
-   })
+    GetAllBanner: builder.query({
+      query: () => `/banner`,
+    }),
+    GetCategoryList: builder.query({
+      query: () => "/category",
+    }),
+    GetFlashSale: builder.query({
+      query: () => "/flash",
+    }),
+    GetCategory: builder.query({
+      query: () => "/category",
+    }),
+    GetAllProduct: builder.query({
+      query: () => '/product'
+    }),
+    GetSubCategory: builder.query({
+      query: () => '/sub-category'
+    })
   }),
-})
+});
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllBannerQuery,useGetCategoryListQuery } = exclusiveApi
+export const {
+  useGetAllProductQuery,
+  useGetCategoryQuery,
+  useGetAllBannerQuery,
+  useGetCategoryListQuery,
+  useGetFlashSaleQuery,
+  useGetSubCategoryQuery,
+} = exclusiveApi;

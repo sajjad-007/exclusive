@@ -7,6 +7,7 @@ import UseDiscountCalculation from "../../../Hook/UseDiscountCalculation";
 import Star from "./Star";
 
 const ProductCart = ({ itemData }) => {
+  // console.log(itemData)
   return (
     <div className="main w-full my-[20px]">
       <div className="main_wrapper">
@@ -14,11 +15,13 @@ const ProductCart = ({ itemData }) => {
         <div className="img_part w-full h-[230px] mb-5 bg-text-faf rounded group relative overflow-hidden ">
           <div className="px-3 py-3">
             <div className="item_part relative">
-              {itemData?.discountPercentage && (
-                <span className="py-1 px-3 bg-secondary2-db44 text-primary-fff font-poppins text-xs font-normal leading-4 tracking-tighter-[2px] rounded-sm">
-                  -{itemData ? itemData.discountPercentage : "-40%"}%
-                </span>
-              )}
+              {/* itemData?.discountPercentage !== undefined && itemData?.discountPercentage !== null , ensures that a discount exists if none then hide this part*/}
+              {itemData?.discountPercentage !== undefined &&
+                itemData?.discountPercentage !== null && (
+                  <span className="py-1 px-3 bg-secondary2-db44 text-primary-fff font-poppins text-xs font-normal leading-4 tracking-tighter-[2px] rounded-sm">
+                    -{itemData.discountPercentage}%
+                  </span>
+                )}
               <div className="icons absolute right-0 -mt-[26px] z-[999]">
                 <div className="flex flex-col gap-[4px]">
                   <div className="h-8 w-8 bg-primary-fff flex items-center justify-center rounded-[100%] hover:bg-secondary2-db44 cursor-pointer transition-all ease-linear duration-200">
@@ -37,7 +40,16 @@ const ProductCart = ({ itemData }) => {
             {/* //Image part */}
             <div className="img w-[150px] h-[152px] bg-text-faf mx-10 my-5  overflow-hidden">
               <Image
-                src={itemData ? itemData.thumbnail : product}
+                //**PROBLEM**- This prevents the "Cannot read property of undefined (reading '0')" error.
+
+                //Array.isArray(itemData?.image) => Ensures that itemData.image exists and is an array
+                //itemData?.image.length > 0 => Ensures the array is not empty
+                //If both conditions are met, itemData.image[0] is used; otherwise, it falls back to product
+                src={
+                  Array.isArray(itemData?.image) && itemData?.image.length > 0
+                    ? itemData?.image[0]
+                    : product
+                }
                 alt="not found"
                 className="h-full w-full object-contain"
               />
@@ -61,14 +73,14 @@ const ProductCart = ({ itemData }) => {
               maxWidth: "200px",
             }}
           >
-            {itemData ? itemData?.title : "hAVIT hV-g92 gamepad"}
+            {itemData ? itemData?.name : "hAVIT hV-g92 gamepad"}
           </h3>
           <div className="flex gap-3">
             <span className="font-poppins text-secondary2-db44 text-[16px] font-medium leading-6">
               $
               {UseDiscountCalculation(
-                itemData?.price,
-                itemData?.discountPercentage
+                itemData ? itemData?.price : "10",
+                itemData ? itemData?.discountPercentage : "1"
               ).toFixed(2)}
               {/* ${itemData ? itemData.price : "120"} */}
             </span>
@@ -76,14 +88,14 @@ const ProductCart = ({ itemData }) => {
               ${itemData ? itemData?.price : "120"}
             </span>
           </div>
-          <div className="start mt-2 flex">
+          <div className="start mt-2 flex items-center gap-2">
             {/* {[...new Array(5)].map((_, index) => ( */}
             <span>
-              <Star rating={itemData && itemData?.rating} />
+              <Star rating={itemData ? itemData?.rating : "1"} />
             </span>
             {/* ))} */}
             <h3 className="text-text-7d8 opacity-50 font-medium text-lg font-popins">
-              (5)
+              ({itemData && itemData.review ? itemData.review : "0"})
             </h3>
           </div>
         </div>

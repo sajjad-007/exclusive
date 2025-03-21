@@ -5,8 +5,7 @@ import { IoGameControllerOutline } from 'react-icons/io5';
 import { CiCamera, CiHeadphones, CiMobile4 } from 'react-icons/ci';
 import { BsSmartwatch } from 'react-icons/bs';
 import { RiComputerLine } from 'react-icons/ri';
-import { increment } from '../../../features/counter/counterSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useGetCategoryQuery } from '../../../features/Api/exclusiveApi';
 
 const categoryBrowse = [
   {
@@ -41,14 +40,10 @@ const categoryBrowse = [
   },
 ];
 const Category = () => {
-  const reduxCount = useSelector((state) => state.counter.value)
-  const dispatch = useDispatch()
-  let [count,setCount] = useState(reduxCount)
-  let handleIncrement = () =>{
-    count++
-    setCount(count)
-    dispatch(increment(count))
-  }
+  const {data , isLoading, error} = useGetCategoryQuery()
+  const categoryData = data?.data.map((item)=>{
+    return item
+  })
   return (
     <div className='mt-20'>
         <ProductCommonLayouts 
@@ -57,7 +52,7 @@ const Category = () => {
             partialItemShow={6}
             heading={"Categories"}
             description={"Browse By Category"}
-            componentData={categoryBrowse}
+            componentData={categoryData}
             autoPlay={true}
         />
     </div>

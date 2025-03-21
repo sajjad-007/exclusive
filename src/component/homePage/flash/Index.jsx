@@ -1,10 +1,13 @@
 import React from 'react'
 import ProductCommonLayouts from '../../common/commonComponet/ProductCommonLayouts'
 import ProductCart from '../../common/commonComponet/ProductCart'
-import { useGetAllProductQuery } from '../../../features/Api/productApi'
+import { useGetFlashSaleQuery } from '../../../features/Api/exclusiveApi'
 
 const FlashSales = () => {
-  const { data, error, isLoading } = useGetAllProductQuery()
+  const { data, error, isLoading } = useGetFlashSaleQuery()
+  const productData = data?.data.map((item)=>{
+    return item.product
+  })
   return (
     <section>
       <div className="container">
@@ -17,7 +20,7 @@ const FlashSales = () => {
             description = {"flash sales"}
             isArrow = {true}
             partialItemShow={4}
-            componentData={data?.products}
+            componentData={productData}
             isLoading={isLoading}
             autoPlay={true}
 

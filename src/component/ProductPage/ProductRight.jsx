@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { useGetAllProductQuery } from "../../features/Api/productApi";
+import { useGetAllProductQuery } from "../../features/Api/exclusiveApi";
 import ProductCart from "../common/commonComponet/ProductCart";
 import ShopByCategorySkeleton from "../helpers/ShopByCategorySkeleton";
 const ProductRight = () => {
   const { data, error, isLoading } = useGetAllProductQuery();
+  const productMap = data?.data?.map((item)=>{
+    return item
+  })
   const [page, setpage] = useState(1);
   const [pagePerShow, setpagePerShow] = useState(9);
-  let myLength = data?.limit;
+  let myLength = productMap?.length;
   let pageLength = Math.ceil(myLength / 9);
+  
   let handlePaging = (index) => {
     if (index > 0 && index <= pageLength) {
       setpage(index);
@@ -35,7 +39,7 @@ const ProductRight = () => {
         <ShopByCategorySkeleton />
       ) : (
         <div className="body flex flex-wrap gap-7 items-center justify-between">
-          {data?.products
+          {productMap
             ?.slice(page * 9 - 9, page * pagePerShow)
             .map((item) => (
               <div className="flex">
@@ -45,7 +49,7 @@ const ProductRight = () => {
           {/* flowbite pagination */}
         </div>
       )}
-
+      {/* //pagination */}
       <div className="flex items-start gap-2 ">
         <div className="mt-11 ">
           <nav aria-label="Page navigation example">
