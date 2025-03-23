@@ -17,11 +17,17 @@ const ProductCart = ({ itemData }) => {
             <div className="item_part relative">
               {/* itemData?.discountPercentage !== undefined && itemData?.discountPercentage !== null , ensures that a discount exists if none then hide this part*/}
               {itemData?.discountPercentage !== undefined &&
-                itemData?.discountPercentage !== null && (
+                itemData?.discountPercentage !== null ? (
                   <span className="py-1 px-3 bg-secondary2-db44 text-primary-fff font-poppins text-xs font-normal leading-4 tracking-tighter-[2px] rounded-sm">
                     -{itemData.discountPercentage}%
                   </span>
-                )}
+                  
+                )
+                :
+                <span className="py-1 px-3 bg-transparent text-primary-fff font-poppins text-xs font-normal leading-4 tracking-tighter-[2px] rounded-sm">
+                    -{itemData.discountPercentage}%
+                  </span>
+              }
               <div className="icons absolute right-0 -mt-[26px] z-[999]">
                 <div className="flex flex-col gap-[4px]">
                   <div className="h-8 w-8 bg-primary-fff flex items-center justify-center rounded-[100%] hover:bg-secondary2-db44 cursor-pointer transition-all ease-linear duration-200">
@@ -56,7 +62,7 @@ const ProductCart = ({ itemData }) => {
             </div>
           </div>
           {/* //add to cart */}
-          <div className="absolute bottom-[-40px]  left-0  h-9 w-full bg-text2-black px-3 py-5 rounded-b-md  flex items-center justify-center capitalize group-hover:bottom-[-1px] transition-all ease-linear duration-200 cursor-pointer">
+          <div className="absolute bottom-[-42px]  left-0  h-9 w-full bg-text2-black px-3 py-5 rounded-b-md  flex items-center justify-center capitalize group-hover:bottom-[-1px] transition-all ease-linear duration-200 cursor-pointer">
             <h4 className="text-primary-fff font-poppins text-[16px] font-medium leading-6">
               add to cart
             </h4>

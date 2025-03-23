@@ -7,6 +7,7 @@ const ProductRight = () => {
   const productMap = data?.data?.map((item)=>{
     return item
   })
+  // console.log(data)
   const [page, setpage] = useState(1);
   const [pagePerShow, setpagePerShow] = useState(9);
   let myLength = productMap?.length;

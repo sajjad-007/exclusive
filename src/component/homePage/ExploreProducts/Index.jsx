@@ -1,9 +1,13 @@
 import React from "react";
 import ProductCommonLayouts from "../../common/commonComponet/ProductCommonLayouts";
 import ProductCart from '../../common/commonComponet/ProductCart'
-import { useGetAllProductQuery } from '../../../features/Api/productApi'
+import { useGetExploreProductQuery } from '../../../features/Api/exclusiveApi'
 const ExploreProduct = () => {
-    const { data, error, isLoading } = useGetAllProductQuery()
+    const { data, error, isLoading } = useGetExploreProductQuery()
+    const exploreProductMap = data?.data?.map((item)=>{
+      return item?.product
+    })
+    // console.log(data?.data?.)
   return (
     <section>
       <div className="container">
@@ -14,7 +18,7 @@ const ExploreProduct = () => {
             description={"Explore Our Products"}
             isArrow={true}
             partialItemShow={4}
-            componentData={data?.products}
+            componentData={exploreProductMap}
             isLoading={isLoading}
             rows={2}
           />

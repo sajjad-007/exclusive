@@ -130,13 +130,12 @@ const HeroSection = () => {
                     {data?.data.map((banners) => (
                       <div
                         key={banners._id}
-                        className="h-[420px] w-full object-contain flex"
+                        className="h-[420px] w-full object-cover"
                       >
                         <img
                           src={banners.image}
                           alt="not found"
                           className="h-full w-full object-cover"
-                          key={banners._id}
                         />
                       </div>
                     ))}

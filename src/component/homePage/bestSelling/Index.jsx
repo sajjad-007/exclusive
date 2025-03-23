@@ -1,9 +1,13 @@
 import React from "react";
 import ProductCart from "../../common/commonComponet/ProductCart";
 import ProductCommonLayouts from "../../common/commonComponet/ProductCommonLayouts";
-import { useGetBestSellingProductQuery } from "../../../features/Api/productApi";
+import { useGetAllBestSellingQuery } from "../../../features/Api/exclusiveApi";
 const BestSelling = () => {
-    const {data,error,isLoading} = useGetBestSellingProductQuery()
+    const {data,error,isLoading} = useGetAllBestSellingQuery()
+    const bestSellingData = data?.data?.map((item)=>{
+    // console.log(item.product)
+    return item.product
+  })
   return (
     <section className="mt-[70px]">
       <div className="container">
@@ -14,7 +18,7 @@ const BestSelling = () => {
             description={"best selling products"}
             partialItemShow={4}
             isViewBtn = {true}
-            componentData={data?.products}
+            componentData={bestSellingData}
             isLoading={isLoading}
             autoPlay={true}
           />
