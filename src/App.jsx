@@ -13,9 +13,10 @@ import SignuPage from "./pages/signup/Index";
 import ProductPage from "./pages/Product/Index";
 import ProductDetails from "./pages/ProductDetails/Index";
 import LogIn from "./pages/Login/LogIn";
-
+import WishList from "./pages/wishList/Index"
 function App() {
   const router = createBrowserRouter(
+    
     createRoutesFromElements(
       <Route element={<RootLayOut/>}>
         <Route path="/home" element={<Homepage/>}/>
@@ -27,6 +28,7 @@ function App() {
         <Route path="/productDetails/:id" element={<ProductDetails/>}/>
         <Route path="/signup" element={<SignuPage/>}/>
         <Route path="/login" element={<LogIn/>}/>
+        <Route path="/wishlist" element={<WishList/>}/>
       </Route>
     )
   );

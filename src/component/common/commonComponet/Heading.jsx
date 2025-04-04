@@ -14,6 +14,7 @@ const Heading = ({title,description = true}) => {
             </div>
             <div>
                 <h2 className='text-text2-black font-inter font-semibold leading-[48px] text-4xl capitalize'>
+                    {/* {description && description} */}
                     {description && (
                         `${description ? description : `flash sales`}`
                     )}

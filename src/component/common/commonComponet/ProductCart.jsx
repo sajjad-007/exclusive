@@ -7,9 +7,8 @@ import UseDiscountCalculation from "../../../Hook/UseDiscountCalculation";
 import Star from "./Star";
 
 const ProductCart = ({ itemData }) => {
-  // console.log(itemData)
   return (
-    <div className="main w-full my-[20px]">
+    <div className="main w-full my-[20px]" key={itemData?._id}>
       <div className="main_wrapper">
         {/* //part one */}
         <div className="img_part w-full h-[230px] mb-5 bg-text-faf rounded group relative overflow-hidden ">

@@ -135,7 +135,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <div className=" flex items-center justify-center pb-6 pt-4 bg-text2-black border-t-[1px] border-solid border-text-7d8 ">
+      <div className="flex items-center justify-center pb-6 pt-4 bg-text2-black border-t-[1px] border-solid border-text-7d8">
         <p className="text-text-7d8 font-poppins text-base font-normal leading-6">
           &copy; Copyright Sazzad 2025. All right reserved
         </p>

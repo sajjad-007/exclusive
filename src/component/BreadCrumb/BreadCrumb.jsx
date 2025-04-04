@@ -13,28 +13,28 @@ const BreadCrumb = () => {
           </span>
         </div>
         {myPath?.map((name, index) => {
-            //my last path
+          //my last path
           let isLast = index === myPath.length - 1;
           //my current path
           BreadCrumb += `/${name}`;
           return isLast ? (
-            <>
+            <div key={index} className="flex items-center gap-2">
               <span className="text-xl text-text-7d8">/</span>
-              <div>
-                <span className="text-text2-black font-poppins text-sm font-medium leading-5 capitalize cursor-not-allowed">
+              <div >
+                <span className="text-text2-black font-poppins text-sm font-medium leading-5 capitalize cursor-not-allowed" >
                   {name}
                 </span>
               </div>
-            </>
+            </div>
           ) : (
-            <>
+            <div key={index}>
               <span className="text-xl text-text-7d8">/</span>
-              <div>
-                <span className="text-text-7d8 font-poppins text-sm font-normal leading-5 capitalize " key={index}>
+              <div >
+                <span className="text-text-7d8 font-poppins text-sm font-normal leading-5 capitalize " >
                   <Link to={BreadCrumb}>{name}</Link>
                 </span>
               </div>
-            </>
+            </div>
           );
         })}
       </div>
