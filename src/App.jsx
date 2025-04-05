@@ -13,30 +13,31 @@ import SignuPage from "./pages/signup/Index";
 import ProductPage from "./pages/Product/Index";
 import ProductDetails from "./pages/ProductDetails/Index";
 import LogIn from "./pages/Login/LogIn";
-import WishList from "./pages/wishList/Index"
+import WishList from "./pages/wishList/Index";
+import AddToCart from "./pages/AddToCart/AddToCart";
 function App() {
   const router = createBrowserRouter(
-    
     createRoutesFromElements(
-      <Route element={<RootLayOut/>}>
-        <Route path="/home" element={<Homepage/>}/>
-        <Route path="/" element={<Homepage/>}/>
-        <Route path="/contact" element={<Contactpage/>}/>
+      <Route element={<RootLayOut />}>
+        <Route path="/home" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/contact" element={<Contactpage />} />
         {/* <Route path="/about" element={<About/>}/> */}
-        <Route path="/product" element={<ProductPage/>}/>
-        <Route path="/productDetails" element={<ProductPage/>}/>
-        <Route path="/productDetails/:id" element={<ProductDetails/>}/>
-        <Route path="/signup" element={<SignuPage/>}/>
-        <Route path="/login" element={<LogIn/>}/>
-        <Route path="/wishlist" element={<WishList/>}/>
+        <Route path="/product" element={<ProductPage />} />
+        <Route path="/productDetails" element={<ProductPage />} />
+        <Route path="/productDetails/:id" element={<ProductDetails />} />
+        <Route path="/signup" element={<SignuPage />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/wishlist" element={<WishList />} />
+        <Route path="/cart" element={<AddToCart/>} />
       </Route>
     )
   );
   return (
     <>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

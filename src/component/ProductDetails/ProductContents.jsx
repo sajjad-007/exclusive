@@ -18,9 +18,9 @@ const ProductContents = ({ data }) => {
     discountPercentage,
     price,
     rating,
-    title,
+    name,
     stock,
-    reviews,
+    review,
     description,
     returnPolicy,
     shippingInformation,
@@ -29,14 +29,14 @@ const ProductContents = ({ data }) => {
     <div className="main">
       <div className="head border-b-2 border-solid border-text-7d8 pb-6">
         <h1 className="font-inter font-semibold text-text2-black text-2xl leading-6 tracking-[0.72px]">
-          {title ? title : "Havic HV G-92 Gamepad"}
+          {name ? name : "Havic HV G-92 Gamepad"}
         </h1>
         <div className="flex items-center gap-2 my-4">
           <span>
             <Star rating={rating} />
           </span>
           <span className="font-poppins font-normal text-text-7d8 text-sm leading-5 pr-2">
-            {reviews?.length} reviews
+          {`review (${review})`}
           </span>
           <span className="font-poppins font-normal text-button-green text-sm leading-5 capitalize border-l-2 border-solid border-text-7d8 pl-4">
             {stock ? stock : "in stock"} stock
@@ -44,6 +44,9 @@ const ProductContents = ({ data }) => {
         </div>
         <span className="font-inter font-normal text-text2-black text-2xl leading-5 tracking-[0.72px]">
           ${Math.round(UseDiscountCalculation(price,discountPercentage)) || 0}
+        </span>
+        <span className="font-inter font-normal text-text-7d8 text-2xl leading-5 tracking-[0.72px] line-through ml-4">
+          ${price}
         </span>
         <p className="font-poppins font-normal text-text2-black text-sm leading-5 mt-6">
           {description ? description : 'Description missing'}

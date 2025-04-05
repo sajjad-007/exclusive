@@ -1,10 +1,8 @@
 import React from "react";
 import BreadCrumb from "../../component/BreadCrumb/BreadCrumb";
 import ProductImgDetails from "../../component/ProductDetails/ProductImgDetails";
-import {
-  useGetProductByCategoryQuery,
-  useGetSingleProductDetailsQuery,
-} from "../../features/Api/productApi";
+import { useGetProductByCategoryQuery } from "../../features/Api/productApi";
+import { useGetSingleProductDetailsQuery,useGetAllBestSellingQuery } from "../../features/Api/exclusiveApi";
 import ProductContents from "../../component/ProductDetails/ProductContents";
 import ProductsDetailsSkeleton from "../../component/helpers/ProductsDetailsSkeleton";
 import { useParams } from "react-router-dom";
@@ -14,11 +12,15 @@ import ProductCart from "../../component/common/commonComponet/ProductCart";
 import Slider from "react-slick";
 const ProductDetails = () => {
   const params = useParams();
-  const { data, error, isLoading } = useGetSingleProductDetailsQuery(
+  const { data,isLoading,error } = useGetSingleProductDetailsQuery(
     params?.id
   );
-  const relatedCategory = useGetProductByCategoryQuery('Mens-Shirts');
-  const mapRelatedCategory = relatedCategory?.data?.products;
+  // console.log(data?.data);
+  const relatedCategory = useGetAllBestSellingQuery()
+  const mapRelatedCategory = relatedCategory?.data?.data;
+  const nowMap = mapRelatedCategory?.map((item)=>{
+    return item?.product
+  })
   let settings = {
     dots: false,
     infinite: true,
@@ -39,10 +41,10 @@ const ProductDetails = () => {
             </div>
             <div className="productDetails_main flex  justify-between  ">
               <div className="img_part w-[62%] h-full">
-                <ProductImgDetails image={data?.images} />
+                <ProductImgDetails image={data?.data?.image} />
               </div>
               <div className="content_part  w-[32%] h-full">
-                <ProductContents data={data && data} />
+                <ProductContents data={data?.data && data?.data} />
               </div>
             </div>
           </>
@@ -51,8 +53,8 @@ const ProductDetails = () => {
         <div className="main_bottom mt-36">
           <Heading title="related item" description={false} />
           <div className="cursor-grab">
-            <Slider {...settings} >
-              {mapRelatedCategory?.map((item, index) => (
+            <Slider {...settings}>
+              {nowMap?.map((item, index) => (
                 <div className="pr-7" key={index}>
                   <ProductCart itemData={item} />
                 </div>

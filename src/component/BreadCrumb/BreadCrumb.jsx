@@ -16,9 +16,9 @@ const BreadCrumb = () => {
           //my last path
           let isLast = index === myPath.length - 1;
           //my current path
-          BreadCrumb += `/${name}`;
+            BreadCrumb += `/${name}`;
           return isLast ? (
-            <div key={index} className="flex items-center gap-2">
+            <div key={index} className="mb-10 flex gap-2">
               <span className="text-xl text-text-7d8">/</span>
               <div >
                 <span className="text-text2-black font-poppins text-sm font-medium leading-5 capitalize cursor-not-allowed" >

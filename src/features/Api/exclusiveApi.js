@@ -28,6 +28,9 @@ export const exclusiveApi = createApi({
     }),
     GetExploreProduct: builder.query({
       query: () => '/explore-product'
+    }),
+    GetSingleProductDetails: builder.query({
+      query: (id)=> `/product/${id}`
     })
   }),
 });
@@ -43,4 +46,5 @@ export const {
   useGetSubCategoryQuery,
   useGetAllBestSellingQuery,
   useGetExploreProductQuery,
+  useGetSingleProductDetailsQuery,
 } = exclusiveApi;
