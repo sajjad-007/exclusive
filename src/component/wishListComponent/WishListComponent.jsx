@@ -24,9 +24,9 @@ const WishListComponent = () => {
         <p className="text-black2626 font-poppins text-xl font-normal leading-7 capitalize">
           wishlist (4)
         </p>
-        <div className="common_btn text-text2-black bg-transparent border-text-7d8 hover:text-primary-fff hover:bg-button-red hover:border-button-red py-4 px-12">
+        <button className="common_btn text-text2-black bg-transparent border-text-7d8 hover:text-primary-fff hover:bg-button-red hover:border-button-red py-4 px-12">
           move all to bag
-        </div>
+        </button>
       </div>
       {/* Wishlist items */}
       <div className="mb-[78px] flex flex-col">

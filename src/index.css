@@ -123,6 +123,25 @@ h1 {
     -moz-box-shadow: 0px 0px 119px 178px rgba(84, 36, 84, 1);
     box-shadow: 0px 0px 119px 178px rgba(84, 36, 84, 1);
   }
+  /* my add to cart section scrollbar */
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 15px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-track {
+    background: var(--text-7d8);
+    height: 4px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: var(--secondary2-db44);
+  }
+  
+  /* .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--text-7d8);
+  } */
+  /* my add to cart section scrollbar */
 }
 @layer components {
   .account_dropdown_span {

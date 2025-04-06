@@ -6,6 +6,7 @@ import FlashSales from "../../component/homePage/flash/Index"
 import HeroSection from "../../component/homePage/heroSection/Index"
 import NewArrival from "../../component/homePage/NewArrival/Index"
 import OurService from "../../component/homePage/OurService/Index"
+import ScrollToTop from "react-scroll-to-top";
 
 
 
@@ -13,6 +14,9 @@ const Homepage = () => {
   
   return (
     <div>
+      {/* react package */}
+      <ScrollToTop smooth color="#db4444" className="flex items-center justify-center rounded " />
+      {/* react package */}
       <HeroSection/>
       <FlashSales/>
       <Category/>
