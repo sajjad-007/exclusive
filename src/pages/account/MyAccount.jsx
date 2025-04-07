@@ -54,7 +54,7 @@ const MyAccount = () => {
         {/* account side bar End*/}
 
         {/* account_details */}
-        <div className="account_details py-10 px-20 w-[70%]">
+        <div className="account_details w-[70%]">
             <AccountInputs/>
         </div>
         {/* account_details */}

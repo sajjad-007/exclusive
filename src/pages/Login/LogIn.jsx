@@ -74,25 +74,21 @@ const LogIn = () => {
                       value={Formik.values.password}
                       className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6 "
                     />
-                      {showHide 
-                      ? 
-                      
+                    {showHide ? (
                       <span
                         className="absolute right-[25%] top-[20%] translate-y-[20%]  text-xl cursor-pointer"
                         onClick={handleHideShow}
                       >
-                        
                         <IoEye />
                       </span>
-                      :
-
+                    ) : (
                       <span
                         className="absolute right-[25%] top-[20%] translate-y-[20%] text-xl cursor-pointer"
                         onClick={handleHideShow}
                       >
                         <FaEyeSlash />
                       </span>
-                      }
+                    )}
                   </div>
                   {Formik.touched.password && Formik.errors.password ? (
                     <p className="text-red-600">{Formik.errors.password}</p>
