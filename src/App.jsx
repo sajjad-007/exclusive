@@ -17,6 +17,7 @@ import WishList from "./pages/wishList/Index";
 import AddToCart from "./pages/AddToCart/AddToCart";
 import MyAccount from "./pages/account/MyAccount";
 import Error from "./pages/Error/Error";
+import CheckOut from "./pages/Checkout/CheckOut";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -33,6 +34,7 @@ function App() {
         <Route path="/wishlist" element={<WishList />} />
         <Route path="/cart" element={<AddToCart/>} />
         <Route path="/account" element={<MyAccount/>} />
+        <Route path="/checkout" element={<CheckOut/>} />
         <Route path={"*"} element={<Error/>} />
       </Route>
     )
