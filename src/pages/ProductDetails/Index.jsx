@@ -2,7 +2,11 @@ import React from "react";
 import BreadCrumb from "../../component/BreadCrumb/BreadCrumb";
 import ProductImgDetails from "../../component/ProductDetails/ProductImgDetails";
 import { useGetProductByCategoryQuery } from "../../features/Api/productApi";
-import { useGetSingleProductDetailsQuery,useGetAllBestSellingQuery } from "../../features/Api/exclusiveApi";
+import {
+  useGetSingleProductDetailsQuery,
+  useGetAllBestSellingQuery,
+  useGetSingleCategoryQuery,
+} from "../../features/Api/exclusiveApi";
 import ProductContents from "../../component/ProductDetails/ProductContents";
 import ProductsDetailsSkeleton from "../../component/helpers/ProductsDetailsSkeleton";
 import { useParams } from "react-router-dom";
@@ -12,20 +16,22 @@ import ProductCart from "../../component/common/commonComponet/ProductCart";
 import Slider from "react-slick";
 const ProductDetails = () => {
   const params = useParams();
-  const { data,isLoading,error } = useGetSingleProductDetailsQuery(
+  const { data, isLoading, error } = useGetSingleProductDetailsQuery(
     params?.id
   );
-  // console.log(data?.data);
-  const relatedCategory = useGetAllBestSellingQuery()
+  // console.log();
+  const relatedProduct = useGetSingleCategoryQuery(data?.data?.category);
+  // console.log(relatedProduct.data.data.product)
+  const relatedCategory = useGetAllBestSellingQuery();
   const mapRelatedCategory = relatedCategory?.data?.data;
-  const nowMap = mapRelatedCategory?.map((item)=>{
-    return item?.product
-  })
+  const nowMap = mapRelatedCategory?.map((item) => {
+    return item?.product;
+  });
   let settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
   };
@@ -50,12 +56,12 @@ const ProductDetails = () => {
           </>
         )}
         {/* bottom part */}
-        <div className="main_bottom mt-36">
+        <div className="main_bottom mt-36 ">
           <Heading title="related item" description={false} />
-          <div className="cursor-grab">
-            <Slider {...settings}>
-              {nowMap?.map((item, index) => (
-                <div className="pr-7" key={index}>
+          <div className="custom-slider cursor-grab ">
+            <Slider {...settings}  >
+              {relatedProduct?.data?.data?.product?.map((item, index) => (
+                <div className="px-7 " key={index}>
                   <ProductCart itemData={item} />
                 </div>
               ))}

@@ -27,7 +27,7 @@ const ProductContents = ({ data }) => {
     shippingInformation,
     size,
   } = data;
-  console.log(data);
+  // console.log(data);
   return (
     <div className="main">
       <div className="head border-b-2 border-solid border-text-7d8 pb-6">

@@ -8,6 +8,8 @@ import Star from "./Star";
 import { Link } from "react-router-dom";
 
 const ProductCart = ({ itemData }) => {
+  // console.log(itemData._id);
+  
   return (
     <div className="main w-full my-[20px]">
       <div className="main_wrapper">
