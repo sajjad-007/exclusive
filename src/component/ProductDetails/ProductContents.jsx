@@ -7,13 +7,14 @@ import { LuRefreshCw } from "react-icons/lu";
 import UseDiscountCalculation from "../../Hook/UseDiscountCalculation";
 
 const ProductContents = ({ data }) => {
-  const size = [
-    { id: 1, size: " xs" },
-    { id: 2, size: "sm" },
-    { id: 3, size: "m" },
-    { id: 4, size: "l" },
-    { id: 5, size: "xl" },
+  const sizeLoop = [
+    { id: 1, sizein: " xs" },
+    { id: 2, sizein: "s" },
+    { id: 3, sizein: "m" },
+    { id: 4, sizein: "l" },
+    { id: 5, sizein: "xl" },
   ];
+
   const {
     discountPercentage,
     price,
@@ -24,7 +25,9 @@ const ProductContents = ({ data }) => {
     description,
     returnPolicy,
     shippingInformation,
+    size,
   } = data;
+  console.log(data);
   return (
     <div className="main">
       <div className="head border-b-2 border-solid border-text-7d8 pb-6">
@@ -36,20 +39,20 @@ const ProductContents = ({ data }) => {
             <Star rating={rating} />
           </span>
           <span className="font-poppins font-normal text-text-7d8 text-sm leading-5 pr-2">
-          {`review (${review})`}
+            {`review (${review})`}
           </span>
           <span className="font-poppins font-normal text-button-green text-sm leading-5 capitalize border-l-2 border-solid border-text-7d8 pl-4">
             {stock ? stock : "in stock"} stock
           </span>
         </div>
         <span className="font-inter font-normal text-text2-black text-2xl leading-5 tracking-[0.72px]">
-          ${Math.round(UseDiscountCalculation(price,discountPercentage)) || 0}
+          ${Math.round(UseDiscountCalculation(price, discountPercentage)) || 0}
         </span>
         <span className="font-inter font-normal text-text-7d8 text-2xl leading-5 tracking-[0.72px] line-through ml-4">
           ${price}
         </span>
         <p className="font-poppins font-normal text-text2-black text-sm leading-5 mt-6">
-          {description ? description : 'Description missing'}
+          {description ? description : "Description missing"}
         </p>
       </div>
       <div className="body">
@@ -73,18 +76,24 @@ const ProductContents = ({ data }) => {
             size:
           </span>
           <div className="flex items-center gap-x-4">
-            {size?.map((item, id) => (
+            {sizeLoop?.map((itemSize) => (
               <div
-                key={id}
-                className="flex items-center justify-center rounded h-9 w-9 text-text2-black border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-text-7d8 hover:text-primary-fff"
+                key={itemSize?.id}
+                className={
+                  itemSize?.sizein.toLowerCase() === size?.toLowerCase()
+                    ? "flex bg-button-red items-center justify-center rounded h-9 w-9 text-primary-fff border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-text-7d8 hover:text-primary-fff"
+                    : "flex  items-center justify-center rounded h-9 w-9 text-text2-black border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-text-7d8 hover:text-primary-fff"
+                }
               >
-                <span className=" font-poppins text-sm font-semibold leading-5 uppercase">
-                  {item.size}
+                <span className="font-poppins text-sm font-semibold leading-5 uppercase">
+                  {itemSize?.sizein}
                 </span>
               </div>
             ))}
           </div>
         </div>
+        {/* size */}
+
         {/* increment, button, love */}
         <div className="flex items-center justify-between gap-4 mt-6">
           {/* increment */}
@@ -121,7 +130,7 @@ const ProductContents = ({ data }) => {
               free delivery
             </span>
             <span className="inline-block font-poppins text-xs font-medium leading-5 text-text2-black underline">
-              {shippingInformation ? shippingInformation : 'missing'}
+              {shippingInformation ? shippingInformation : "missing"}
             </span>
           </div>
         </div>
