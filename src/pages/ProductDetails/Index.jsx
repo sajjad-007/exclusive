@@ -68,6 +68,7 @@ const ProductDetails = () => {
             </Slider>
           </div>
         </div>
+        <img src="" alt="" />
       </div>
     </div>
   );
