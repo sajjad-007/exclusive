@@ -4,6 +4,7 @@ import { useGetCategoryListQuery, useGetSubCategoryQuery } from "../../features/
 import BreadCrumb from "../../component/BreadCrumb/BreadCrumb";
 import ProductRight from "../../component/ProductPage/ProductRight";
 
+
 const ProductPage = () => {
   const { data,isLoading,error} = useGetCategoryListQuery();
   const categoryList = data?.data.map((item)=>{

@@ -3,7 +3,18 @@ import BreadCrumb from "../../component/BreadCrumb/BreadCrumb";
 import MyImg from "../../assets/joy.png";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import "flowbite";
+import { removeCartItem } from "../../features/counter/productSlice";
+import AlertInfo from "../../component/Flowbite/AlertInfo";
+
 const AddToCart = () => {
+  const CartValues = useSelector((state) => state.cartProduct.value);
+  const dispatch = useDispatch();
+  const handleRemoveCartitem = (item) => {
+    dispatch(removeCartItem(item));
+  };
   return (
     <div>
       <div className="container">
@@ -26,58 +37,82 @@ const AddToCart = () => {
           </div>
         </div>
         {/* product head part or details part */}
-        <div className="h-[500px] overflow-y-scroll mb-9 scrollbar">
-          {[...Array(7)].map((_, index) => (
-            <div key={index} className="flex flex-col gap-10">
-              <div className="body py-6 px-10 shadow-md mb-10 rounded-md flex items-center justify-between">
-                <div className="font-poppins font-normal text-text2-black text-base leading-6 capitalize overflow-hidden flex gap-4 items-center flex-1 relative">
-                  <img
-                    src={MyImg}
-                    alt="not found"
-                    className="h-12 w-12 object-fill group"
-                  />
-                  <span className="text-sm text-primary-fff bg-button-red h-[20px] w-[20px] rounded-full flex items-center justify-center cursor-pointer absolute top-0 left-0">
-                    <ImCross />
-                  </span>
-                  <h6 className="font-poppins font-normal text-text2-black text-base leading-6 capitalize truncate ">
-                    LCD Monitor
-                  </h6>
-                </div>
-                <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize pl-24">
-                  $600
-                </div>
-                <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize flex justify-center items-center relative">
-                  <input
-                    type="number"
-                    className="border border-text-7d8 rounded w-20 h-10 px-4 py-[6px]"
-                  />
-                  <div className="absolute flex flex-col left-[55%]">
-                    <span className="cursor-pointer text-base">
-                      <FaAngleUp />
+        {CartValues?.length <= 0 ? (
+          <div>
+            <AlertInfo text="Your cart is empty purchase something..."/>
+            <Link to={"/product"} className="mb-52 mt-32 flex items-center justify-center">
+              <button
+                className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 
+                  hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 
+                  dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 
+                  dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg 
+                  text-md px-5 py-5 text-center me-2 mb-2 capitalize"
+              >
+                Back to shop
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div className="h-[500px] overflow-y-scroll mb-9 scrollbar">
+            {CartValues?.map((item) => (
+              <div key={item._id} className="flex flex-col gap-10">
+                <div className="body py-6 px-10 shadow-md mb-10 rounded-md flex items-center justify-between">
+                  <div className="font-poppins font-normal text-text2-black text-base leading-6 capitalize overflow-hidden flex gap-4 items-center flex-1 relative">
+                    <img
+                      src={item?.image[0]}
+                      alt="not found"
+                      className="h-12 w-12 object-fill group"
+                    />
+                    <span
+                      onClick={() => handleRemoveCartitem(item)}
+                      className="text-sm text-primary-fff bg-button-red h-[20px] w-[20px] rounded-full flex items-center justify-center cursor-pointer absolute top-0 left-0"
+                    >
+                      <ImCross />
                     </span>
-                    <span className="cursor-pointer text-base">
-                      <FaAngleDown />
-                    </span>
+                    <h6 className="font-poppins font-normal text-text2-black text-base leading-6 capitalize truncate ">
+                      {item?.name}
+                    </h6>
+                  </div>
+                  <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize pl-24">
+                    ${item?.price}
+                  </div>
+                  <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize flex justify-center items-center relative">
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      className="border border-text-7d8 rounded w-20 h-10 px-4 py-[6px]"
+                    />
+                    <div className="absolute flex flex-col left-[55%]">
+                      <span className="cursor-pointer text-base">
+                        <FaAngleUp />
+                      </span>
+                      <span className="cursor-pointer text-base">
+                        <FaAngleDown />
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize text-end">
+                    ${item?.quantity * item?.price}
                   </div>
                 </div>
-                <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize text-end">
-                  $750
-                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
         {/* product body part or details part*/}
-        {/* button part  */}
+        {/* return to shop button part  */}
         <div className="flex items-center justify-between mb-20">
-          <button className="common_btn text-text2-black bg-transparent border-text-7d8 hover:text-primary-fff hover:bg-button-red hover:border-button-red py-4 px-12">
+          <Link
+            to="/product"
+            className="common_btn text-text2-black bg-transparent border-text-7d8 hover:text-primary-fff hover:bg-button-red hover:border-button-red py-4 px-12"
+          >
             return to shop
-          </button>
+          </Link>
           <button className="common_btn text-text2-black bg-transparent border-text-7d8 hover:text-primary-fff hover:bg-button-red hover:border-button-red py-4 px-12">
             update cart
           </button>
         </div>
-        {/* button part  */}
+        {/* return to shop button part  */}
         {/* footer part */}
         <div className="main_foot flex justify-between gap-[173px] flex-wrap mb-36">
           <div className="child1 w-[45%] h-8">

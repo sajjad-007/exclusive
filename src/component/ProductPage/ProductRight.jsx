@@ -43,7 +43,7 @@ const ProductRight = () => {
           {productMap
             ?.slice(page * 9 - 9, page * pagePerShow)
             .map((item) => (
-              <div className="flex">
+              <div className="flex" key={item._id}>
                 <ProductCart itemData={item} />
               </div>
             ))}

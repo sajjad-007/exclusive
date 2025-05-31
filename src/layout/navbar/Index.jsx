@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosStarOutline, IoMdHeartEmpty } from "react-icons/io";
 import { MdShoppingCart } from "react-icons/md";
@@ -85,9 +85,12 @@ const Navbar = () => {
               <span className="text-2xl cursor-pointer">
                 <IoMdHeartEmpty />
               </span>
-              <span className="text-2xl cursor-pointer numberIcon">
-                <MdShoppingCart />
-              </span>
+              <Link to="/cart">
+                <span className="text-2xl cursor-pointer numberIcon">
+                  <MdShoppingCart />
+                </span>
+              </Link>
+              {/* Account part */}
               <div className="contact">
                 <span
                   onClick={handleDropdown}

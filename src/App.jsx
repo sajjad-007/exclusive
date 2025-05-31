@@ -18,6 +18,8 @@ import AddToCart from "./pages/AddToCart/AddToCart";
 import MyAccount from "./pages/account/MyAccount";
 import Error from "./pages/Error/Error";
 import CheckOut from "./pages/Checkout/CheckOut";
+import ToastNotifier from "./component/utility/Toastify.jsx";
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -25,23 +27,24 @@ function App() {
         <Route path="/home" element={<Homepage />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/contact" element={<Contactpage />} />
-        <Route path="/about" element={<About/>}/>
+        <Route path="/about" element={<About />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/productDetails" element={<ProductPage />} />
         <Route path="/productDetails/:id" element={<ProductDetails />} />
         <Route path="/signup" element={<SignuPage />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/wishlist" element={<WishList />} />
-        <Route path="/cart" element={<AddToCart/>} />
-        <Route path="/account" element={<MyAccount/>} />
-        <Route path="/checkout" element={<CheckOut/>} />
-        <Route path={"*"} element={<Error/>} />
+        <Route path="/cart" element={<AddToCart />} />
+        <Route path="/account" element={<MyAccount />} />
+        <Route path="/checkout" element={<CheckOut />} />
+        <Route path={"*"} element={<Error />} />
       </Route>
     )
   );
   return (
     <>
       <RouterProvider router={router} />
+      <ToastNotifier/>
     </>
   );
 }
