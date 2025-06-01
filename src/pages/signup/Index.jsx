@@ -7,18 +7,22 @@ import { FaEyeSlash } from "react-icons/fa";
 import { IoEye } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 const SignuPage = () => {
   const [showHide, setShowHide] = useState(false);
   const initialValues = {
-    name: "",
-    emailOrphoneNumber: "",
+    firstName: "",
+    email: "",
+    phoneNumber: "",
     password: "",
+    agree: false,
   };
   const Formik = useFormik({
     initialValues: initialValues,
     validationSchema: LoginValidation,
     onSubmit: (values) => {
-      // console.log(values);
+      console.log(values);
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -28,7 +32,7 @@ const SignuPage = () => {
   return (
     <div className="main pt-[60px] pb-36">
       <div className="container">
-        <div className="flex gap-[100px] justify-between items-center">
+        <div className="flex gap-[100px] justify-between my-7">
           {/* image part */}
           <div className="Img_part w-[70%] h-[601px] overflow-hidden relative left-[-42px]">
             <img
@@ -52,29 +56,56 @@ const SignuPage = () => {
               </div>
               {/* inputs and button part */}
               <form onSubmit={Formik.handleSubmit}>
-                <div className="body_parts flex flex-col gap-10">
+                <div className="body_parts flex flex-col gap-8 ">
+                  {/* Name section */}
                   <input
                     type="text"
-                    name="name"
-                    placeholder="Name"
+                    name="firstName"
+                    placeholder="firstName"
                     onChange={Formik.handleChange}
-                    value={Formik.values.name}
+                    value={Formik.values.firstName}
                     className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6"
                   />
-                  <input
-                    type="text"
-                    name="emailOrphoneNumber"
-                    placeholder="Email or Phone Number"
-                    onChange={Formik.handleChange}
-                    value={Formik.values.emailOrphoneNumber}
-                    className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6"
-                  />
-                  {Formik.touched.emailOrphoneNumber &&
-                  Formik.errors.emailOrphoneNumber ? (
+                   {Formik.touched.firstName &&
+                  Formik.errors.firstName ? (
                     <p className="text-red-500">
-                      {Formik.errors.emailOrphoneNumber}
+                      {Formik.errors.firstName}
                     </p>
                   ) : null}
+                  {/* Email  section start*/}
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    onChange={Formik.handleChange}
+                    value={Formik.values.email}
+                    className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6"
+                  />
+                  {Formik.touched.email &&
+                  Formik.errors.email ? (
+                    <p className="text-red-500">
+                      {Formik.errors.email}
+                    </p>
+                  ) : null}
+                  {/* Email  section start End*/}
+                  
+                  {/*  Phone number section start*/}
+                  <input
+                    type="text"
+                    name="phoneNumber"
+                    placeholder="Phone Number"
+                    onChange={Formik.handleChange}
+                    value={Formik.values.phoneNumber}
+                    className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6"
+                  />
+                  {Formik.touched.phoneNumber &&
+                  Formik.errors.phoneNumber ? (
+                    <p className="text-red-500">
+                      {Formik.errors.phoneNumber}
+                    </p>
+                  ) : null}
+                  {/*  Phone number section End*/}
+
                   {/* password section */}
                   <div className="relative">
                     <input
@@ -101,9 +132,21 @@ const SignuPage = () => {
                       </span>
                     )}
                   </div>
-                  {Formik.touched.password && Formik.errors.password ? (
+                   {Formik.touched.password && Formik.errors.password ? (
                     <p className="text-red-600">{Formik.errors.password}</p>
                   ) : null}
+                  <div className="flex gap-4 ">
+                    <input
+                      type="checkbox"
+                      name="agree"
+                      onChange={Formik.handleChange}
+                      value={Formik.values.agree}
+                      className="w-7 h-7"
+                    />
+                    <p className="font-poppins font-normal text-text-7d8 text-sm leading-6">I want to receive emails about events, product updates and company announcements.</p>
+                  </div>
+                    <p className="font-poppins font-normal text-text-7d8 text-sm leading-6">By creating an account, you agree to our <span className="text-text2-black">terms and conditions</span> and <span className="text-text2-black">privacy policy</span></p>
+                 
                   <div className="flex flex-col items-center gap-4">
                     <Button
                       type="submit"
@@ -116,7 +159,7 @@ const SignuPage = () => {
                       </span>
                       <p className="text-base"> Sign up with Google </p>
                     </div>
-                    
+
                     <div className="flex gap-3 mt-7">
                       <p className="font-poppins font-normal text-text-7d8 text-base leading-6 capitalize ">
                         Already have account?

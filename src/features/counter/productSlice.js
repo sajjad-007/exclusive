@@ -18,6 +18,7 @@ export const ProductSlice = createSlice({
     //action = redux toolkit values (product's values)
     addtoCart: (state, action) => {
       // action.playload => we can see cart's all values
+      // findIndex method state.value array theke index number return korbe judi condition ta mile
       let findIndexId = state.value.findIndex((item) => {
         return item._id === action.payload._id;
       });
@@ -38,7 +39,7 @@ export const ProductSlice = createSlice({
     removeCartItem: (state, action) => {
       //class video node-17 time: 1:10:00
       const reduceItem = state.value.filter((item) => {
-        //je item ta remvoe korbo sei item chara redux er baki item gulo return hobe
+        //je item ta remvoe korbo sei item chara redux er baki item gulo return hobe ba store korbo
         return item._id !== action.payload._id;
       });
 

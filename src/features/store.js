@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import productSlice from "./counter/productSlice";
 import { productApi } from "./Api/productApi";
 import { exclusiveApi } from "./Api/exclusiveApi";
-import { getTotal } from "./counter/productSlice";
+
 export const store = configureStore({
   reducer: {
     cartProduct: productSlice,
@@ -14,4 +14,4 @@ export const store = configureStore({
       .concat(productApi.middleware)
       .concat(exclusiveApi.middleware),
 });
-// store.dispatch(getTotal())
+

@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import LoginValidation from "../../validation/auth/LoginValidation";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEye } from "react-icons/io5";
+import { Link } from "react-router-dom";
 const LogIn = () => {
   const [showHide, setShowHide] = useState(false);
   const initialValues = {
@@ -102,6 +103,17 @@ const LogIn = () => {
                     <p className="font-poppins font-normal text-secondary2-db44 text-base leading-6 capitalize cursor-pointer">
                       forget password?
                     </p>
+                  </div>
+                  <div className="flex gap-3 mt-7">
+                    <p className="font-poppins font-normal text-text-7d8 text-base leading-6  ">
+                      Don't have an account?
+                    </p>
+                    <Link
+                      to="/signup"
+                      className="font-poppins font-medium text-text-7d8 text-base leading-6 capitalize underline"
+                    >
+                      Create account
+                    </Link>
                   </div>
                 </div>
               </form>
