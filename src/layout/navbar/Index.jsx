@@ -8,22 +8,11 @@ import { RiContactsLine } from "react-icons/ri";
 import { FiShoppingBag } from "react-icons/fi";
 import { RxCrossCircled } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [account, setAccount] = useState(false);
-
-  // useEffect(()=>{
-  //     window.addEventListener("click",(event)=>{
-  //         if (userAccountRef.current.contains(event.target)) {
-  //             setAccount(!account)
-  //         } else {
-  //             setAccount(false)
-  //             // console.log('false');
-
-  //         }
-
-  //     })
-  // },[account])
+  const {totalItem} = useSelector((state) => state.cartProduct);
   let handleDropdown = (event) => {
     setAccount(!account);
   };
@@ -42,6 +31,10 @@ const Navbar = () => {
     },
     {
       id: 4,
+      item: "about",
+    },
+    {
+      id: 5,
       item: "signup",
     },
   ];
@@ -86,7 +79,7 @@ const Navbar = () => {
                 <IoMdHeartEmpty />
               </span>
               <Link to="/cart">
-                <span className="text-2xl cursor-pointer numberIcon">
+                <span className="text-2xl cursor-pointer numberIcon" data-amount={totalItem}>
                   <MdShoppingCart />
                 </span>
               </Link>

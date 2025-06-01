@@ -7,7 +7,7 @@ import UseDiscountCalculation from "../../../Hook/UseDiscountCalculation";
 import Star from "./Star";
 import { Link } from "react-router-dom";
 import { addtoCart } from "../../../features/counter/productSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const ProductCart = ({ itemData }) => {
@@ -49,7 +49,7 @@ const ProductCart = ({ itemData }) => {
                 </div>
               </div>
             </div>
-            <Link to={`/productDetails/${itemData._id}`}>
+            <Link to={`/productDetails/${itemData?._id}`}>
               {/* //Image part */}
               <div className="img w-[150px] h-[152px] bg-text-faf mx-10 my-5  overflow-hidden">
                 <Image
@@ -109,7 +109,7 @@ const ProductCart = ({ itemData }) => {
             </span>
             {/* ))} */}
             <h3 className="text-text-7d8 opacity-50 font-medium text-lg font-popins">
-              ({itemData && itemData.review ? itemData.review : "0"})
+              ({itemData && itemData?.review ? itemData?.review : "0"})
             </h3>
           </div>
         </div>

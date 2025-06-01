@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BreadCrumb from "../../component/BreadCrumb/BreadCrumb";
 import MyImg from "../../assets/joy.png";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
@@ -6,15 +6,25 @@ import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "flowbite";
-import { removeCartItem } from "../../features/counter/productSlice";
+import { removeCartItem,incrementAmount, decrementAmount, getTotal } from "../../features/counter/productSlice";
 import AlertInfo from "../../component/Flowbite/AlertInfo";
 
+
 const AddToCart = () => {
-  const CartValues = useSelector((state) => state.cartProduct.value);
   const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getTotal())
+  },[localStorage.getItem("cart")])
+  const {totalAmount, totalItem, value} = useSelector((state) => state.cartProduct);
   const handleRemoveCartitem = (item) => {
     dispatch(removeCartItem(item));
   };
+  let handleIncrement = (item) => {
+    dispatch(incrementAmount(item))
+  }
+  let handleDecrement = (item) => {
+    dispatch(decrementAmount(item))
+  }
   return (
     <div>
       <div className="container">
@@ -37,7 +47,7 @@ const AddToCart = () => {
           </div>
         </div>
         {/* product head part or details part */}
-        {CartValues?.length <= 0 ? (
+        {value?.length <= 0 ? (
           <div>
             <AlertInfo text="Your cart is empty purchase something..."/>
             <Link to={"/product"} className="mb-52 mt-32 flex items-center justify-center">
@@ -54,7 +64,7 @@ const AddToCart = () => {
           </div>
         ) : (
           <div className="h-[500px] overflow-y-scroll mb-9 scrollbar">
-            {CartValues?.map((item) => (
+            {value?.map((item) => (
               <div key={item._id} className="flex flex-col gap-10">
                 <div className="body py-6 px-10 shadow-md mb-10 rounded-md flex items-center justify-between">
                   <div className="font-poppins font-normal text-text2-black text-base leading-6 capitalize overflow-hidden flex gap-4 items-center flex-1 relative">
@@ -83,10 +93,10 @@ const AddToCart = () => {
                       className="border border-text-7d8 rounded w-20 h-10 px-4 py-[6px]"
                     />
                     <div className="absolute flex flex-col left-[55%]">
-                      <span className="cursor-pointer text-base">
+                      <span className="cursor-pointer text-base" onClick={()=> handleIncrement(item)}>
                         <FaAngleUp />
                       </span>
-                      <span className="cursor-pointer text-base">
+                      <span className="cursor-pointer text-base" onClick={()=> handleDecrement(item)}>
                         <FaAngleDown />
                       </span>
                     </div>
@@ -136,7 +146,7 @@ const AddToCart = () => {
                   subtotal:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base">
-                  $400
+                  ${totalItem}
                 </span>
               </div>
               {/* Subtotal*/}
@@ -146,7 +156,7 @@ const AddToCart = () => {
                   Shipping:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base capitalize">
-                  free
+                  $0
                 </span>
               </div>
               {/* Shipping Fee*/}
@@ -156,7 +166,7 @@ const AddToCart = () => {
                   total:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base">
-                  $400
+                  ${totalAmount}
                 </span>
               </div>
               {/* Total amount */}

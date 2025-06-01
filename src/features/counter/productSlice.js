@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toastSuccess,toastError } from "../../component/utility/Toastify.jsx";
+import { toastSuccess, toastError } from "../../component/utility/Toastify.jsx";
 const initialState = {
   value: localStorage.getItem("cart")
     ? //localStorage.getItem => local storage er store kora value use kora jabe redux a ja reload korar por chole jabe na
       //JSON.parse() er kaj holo localStroage er string value gulo ke object a convert kore
       JSON.parse(localStorage.getItem("cart"))
     : [],
+  totalAmount: 0,
+  totalItem: 0,
 };
 
 export const ProductSlice = createSlice({
@@ -34,20 +36,54 @@ export const ProductSlice = createSlice({
       }
     },
     removeCartItem: (state, action) => {
-      //class video node-17 time: 1:10:00 
+      //class video node-17 time: 1:10:00
       const reduceItem = state.value.filter((item) => {
         //je item ta remvoe korbo sei item chara redux er baki item gulo return hobe
         return item._id !== action.payload._id;
       });
-      
+
       state.value = reduceItem;
-       toastError(`${action.payload.name} is remove from cart`);
+      toastError(`${action.payload.name} is remove from cart`);
       localStorage.setItem("cart", JSON.stringify(state.value));
+    },
+    incrementAmount: (state, action) => {
+      let findIndexid = state.value.findIndex((item) => {
+        return item._id === action.payload._id;
+      });
+      state.value[findIndexid].quantity += 1;
+      toastSuccess(`${action.payload.name} again added to cart`);
+      localStorage.setItem("cart", JSON.stringify(state.value));
+    },
+    decrementAmount: (state,action) => {
+      let findIndexId = state.value.findIndex((item)=>{
+        return item._id === action.payload._id
+      });
+      if(state.value[findIndexId].quantity > 1){
+        state.value[findIndexId].quantity -= 1
+        toastSuccess(`${action.payload.name} is remove from cart`);
+        localStorage.setItem("cart", JSON.stringify(state.value));
+      }
+
+    },
+    getTotal: (state, action) => {
+      const reduceArray = state.value.reduce(
+        (initialvalue, item) => {
+          const { price, quantity } = item;
+          initialvalue.amount += price * quantity;
+          initialvalue.item += quantity;
+          return initialvalue;
+        },
+        { amount: 0, item: 0 }
+      );
+      const {amount,item} = reduceArray;
+      state.totalAmount = amount;
+      state.totalItem = item;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addtoCart, removeCartItem } = ProductSlice.actions;
+export const { addtoCart, removeCartItem, incrementAmount, decrementAmount, getTotal } =
+  ProductSlice.actions;
 
 export default ProductSlice.reducer;
