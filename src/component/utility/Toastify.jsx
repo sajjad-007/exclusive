@@ -7,8 +7,8 @@ const ToastNotifier = () => {
 };
 
 // Helper functions for triggering toasts
-export const toastSuccess = (msg) => {
-  toast.success(msg || "🦄 Wow so easy!", {
+export const toastSuccess = ({msg}) => {
+  toast.success(msg, {
     position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
@@ -20,8 +20,8 @@ export const toastSuccess = (msg) => {
   });
 };
 
-export const toastError = (msg) => {
-  toast.error(msg || "🦄 Wow so easy!", {
+export const toastError = ({msg}) => {
+  toast.error(msg, {
     position: "top-left",
     autoClose: 1000,
     hideProgressBar: false,

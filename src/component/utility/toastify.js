@@ -1,7 +1,7 @@
 import { toast, Bounce } from "react-toastify";
 
 const toastSuccess = (msg) => {
-  toast.success("🦄 Wow so easy!", {
+  toast.success(msg || "🦄 Wow so easy!", {
     position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
@@ -15,7 +15,7 @@ const toastSuccess = (msg) => {
 };
 
 const toastError = (msg) => {
-  toast.error("🦄 Wow so easy!", {
+  toast.error(msg || "🦄 Wow so easy!", {
     position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
@@ -29,9 +29,9 @@ const toastError = (msg) => {
 };
 
 const toastInfo = (msg) => {
-  toast.info("🦄 Wow so easy!", {
+  toast.info(msg || "🦄 Wow so easy!", {
     position: "top-right",
-    autoClose: 1000,
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: false,
     pauseOnHover: true,

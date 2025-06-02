@@ -19,6 +19,7 @@ import MyAccount from "./pages/account/MyAccount";
 import Error from "./pages/Error/Error";
 import CheckOut from "./pages/Checkout/CheckOut";
 import ToastNotifier from "./component/utility/Toastify.jsx";
+import VerifyOtp from "./pages/verifyOtp/VerifyOtp.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -37,6 +38,7 @@ function App() {
         <Route path="/cart" element={<AddToCart />} />
         <Route path="/account" element={<MyAccount />} />
         <Route path="/checkout" element={<CheckOut />} />
+        <Route path="/verifyOtp/:email" element={<VerifyOtp />} />
         <Route path={"*"} element={<Error />} />
       </Route>
     )

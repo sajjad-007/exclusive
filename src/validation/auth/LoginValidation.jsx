@@ -10,10 +10,11 @@ const LoginValidation = Yup.object({
   phoneNumber: Yup.string()
     // .matches(phoneNumberRegx, "Check your phone number format")
     .required("Please enter your Phone Number"),
+  termAccept: Yup.string().required("Accept our Terms & Conditions"),
   firstName: Yup.string()
-     .min(2, 'Too Short!')
-     .max(50, 'Too Long!')
-     .required('Please enter your Name'),
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Please enter your Name"),
   password: Yup.string()
     .min(5, "minimum 5 characters required")
     .max(14, "maximum 14 characters")

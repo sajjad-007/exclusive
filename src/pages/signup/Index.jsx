@@ -8,22 +8,56 @@ import { IoEye } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import axios from "axios";
+// import { toastError, toastSuccess } from "../../component/utility/Toastify";
+import {
+  toastError,
+  toastInfo,
+  toastSuccess,
+} from "../../component/utility/toastify";
+import { ThreeDots } from "react-loader-spinner";
+import { axiosinstance } from "../../../helper/axios.js";
 
 const SignuPage = () => {
   const [showHide, setShowHide] = useState(false);
+  const [loading, setLoading] = useState(false);
   const initialValues = {
     firstName: "",
     email: "",
     phoneNumber: "",
     password: "",
-    agree: false,
+    termAccept: false,
   };
+
   const Formik = useFormik({
     initialValues: initialValues,
     validationSchema: LoginValidation,
-    onSubmit: (values) => {
-      console.log(values);
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      // alert(JSON.stringify(values, null, 2));
+      const { firstName, email, phoneNumber, password, termAccept } = values;
+      if (!termAccept) {
+        toastError("Accept our terms and conditions");
+      }
+      setLoading(true);
+      try {
+        const response = await axiosinstance.post("registration", {
+          firstName: firstName,
+          email: email,
+          phoneNumber: phoneNumber,
+          password: password,
+        });
+
+        if (response.statusText.toLocaleLowerCase === "OK".toLocaleLowerCase) {
+          toastInfo(`${response.data.data.firstName} please check your email`);
+          toastSuccess(response.data.message);
+        }
+      } catch (error) {
+        console.error("error from axios", error);
+        if (error.response) {
+          console.error("Server response error:", error.response.data);
+        }
+      } finally {
+        setLoading(false);
+      }
     },
   });
   const handleHideShow = () => {
@@ -66,11 +100,8 @@ const SignuPage = () => {
                     value={Formik.values.firstName}
                     className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6"
                   />
-                   {Formik.touched.firstName &&
-                  Formik.errors.firstName ? (
-                    <p className="text-red-500">
-                      {Formik.errors.firstName}
-                    </p>
+                  {Formik.touched.firstName && Formik.errors.firstName ? (
+                    <p className="text-red-500">{Formik.errors.firstName}</p>
                   ) : null}
                   {/* Email  section start*/}
                   <input
@@ -81,14 +112,11 @@ const SignuPage = () => {
                     value={Formik.values.email}
                     className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6"
                   />
-                  {Formik.touched.email &&
-                  Formik.errors.email ? (
-                    <p className="text-red-500">
-                      {Formik.errors.email}
-                    </p>
+                  {Formik.touched.email && Formik.errors.email ? (
+                    <p className="text-red-500">{Formik.errors.email}</p>
                   ) : null}
                   {/* Email  section start End*/}
-                  
+
                   {/*  Phone number section start*/}
                   <input
                     type="text"
@@ -98,11 +126,8 @@ const SignuPage = () => {
                     value={Formik.values.phoneNumber}
                     className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6"
                   />
-                  {Formik.touched.phoneNumber &&
-                  Formik.errors.phoneNumber ? (
-                    <p className="text-red-500">
-                      {Formik.errors.phoneNumber}
-                    </p>
+                  {Formik.touched.phoneNumber && Formik.errors.phoneNumber ? (
+                    <p className="text-red-500">{Formik.errors.phoneNumber}</p>
                   ) : null}
                   {/*  Phone number section End*/}
 
@@ -132,34 +157,62 @@ const SignuPage = () => {
                       </span>
                     )}
                   </div>
-                   {Formik.touched.password && Formik.errors.password ? (
+                  {Formik.touched.password && Formik.errors.password ? (
                     <p className="text-red-600">{Formik.errors.password}</p>
                   ) : null}
+
+                  {/* Checkbox terms and condtion start */}
                   <div className="flex gap-4 ">
                     <input
                       type="checkbox"
-                      name="agree"
+                      name="termAccept"
                       onChange={Formik.handleChange}
-                      value={Formik.values.agree}
+                      value={Formik.values.termAccept}
                       className="w-7 h-7"
                     />
-                    <p className="font-poppins font-normal text-text-7d8 text-sm leading-6">I want to receive emails about events, product updates and company announcements.</p>
+                    <p className="font-poppins font-normal text-text-7d8 text-sm leading-6">
+                      I want to receive emails about events, product updates and
+                      company announcements.
+                    </p>
                   </div>
-                    <p className="font-poppins font-normal text-text-7d8 text-sm leading-6">By creating an account, you agree to our <span className="text-text2-black">terms and conditions</span> and <span className="text-text2-black">privacy policy</span></p>
-                 
+
+                  <p className="font-poppins font-normal text-text-7d8 text-sm leading-6">
+                    By creating an account, you agree to our{" "}
+                    <span className="text-text2-black">
+                      terms and conditions
+                    </span>{" "}
+                    and <span className="text-text2-black">privacy policy</span>
+                  </p>
+
+                  {/* Checkbox terms and condtion End */}
+
+                  {/* Button start */}
                   <div className="flex flex-col items-center gap-4">
-                    <Button
-                      type="submit"
-                      text="Create Account"
-                      className="common_btn py-4 px-12 w-full"
-                    />
+                    {loading ? (
+                      <ThreeDots
+                        visible={true}
+                        height="60"
+                        width="60"
+                        color="#4fa94d"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                    ) : (
+                      <Button
+                        type="submit"
+                        text="Create Account"
+                        className="common_btn py-4 px-12 w-full"
+                      />
+                    )}
+
                     <div className="w-full common_btn text-text2-black bg-transparent border-text-7d8 hover:text-primary-fff hover:bg-button-red hover:border-button-red py-4 px-12 flex gap-4 items-center justify-center">
                       <span className="text-2xl">
                         <FcGoogle />
                       </span>
                       <p className="text-base"> Sign up with Google </p>
                     </div>
-
                     <div className="flex gap-3 mt-7">
                       <p className="font-poppins font-normal text-text-7d8 text-base leading-6 capitalize ">
                         Already have account?
