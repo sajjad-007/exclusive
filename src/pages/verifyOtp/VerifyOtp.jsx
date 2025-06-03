@@ -1,27 +1,58 @@
 import React, { useState } from "react";
 import { axiosinstance } from "../../../helper/axios";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
+import {
+  toastSuccess,
+  toastError,
+  toastInfo,
+} from "../../component/utility/toastify";
 
 const VerifyOtp = () => {
   const params = useParams();
   const { email } = params;
-  const [otp, setOtp] = useState(null);
+  const [otp, setOtp] = useState();
   const [loading, setLoading] = useState(false);
+  const [loadingg, setLoadingg] = useState(false);
+
+  //Handle your OTP
   const handleOtp = async () => {
     setLoading(true);
     try {
+      // axios instance is used to seperate common api "http://localhost:3000/api/v1/" ;
       const response = await axiosinstance.post("otp", {
         email: email,
         otp: otp,
       });
-      console.log(response);
+      if (response.statusText.toLocaleLowerCase === "OK".toLocaleLowerCase) {
+        toastSuccess(response.data.message);
+      }
     } catch (error) {
       console.error("Error from otpVerify", error);
+      toastError(`${error.response.data.message}`);
     } finally {
       setLoading(false);
     }
   };
+  // Handle your resent OTP
+  const handleResentOtp = async () => {
+    setLoadingg(true);
+    try {
+      // axios instance is used to seperate common api "http://localhost:3000/api/v1/" ;
+      const response = await axiosinstance.post("resendotp", {
+        email: email,
+      });
+      if (response.statusText.toLocaleLowerCase === "OK".toLocaleLowerCase) {
+        toastSuccess(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error from otpVerify", error);
+      toastError(`${error.response.data.message}`);
+    } finally {
+      setLoadingg(false);
+    }
+  };
+
   return (
     <div className="flex flex-1 flex-col justify-center space-y-5 max-w-md mx-auto my-44">
       <div className="flex flex-col space-y-2 text-center">
@@ -53,6 +84,25 @@ const VerifyOtp = () => {
             className="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-black text-white"
           >
             Confirm
+          </button>
+        )}
+        {loadingg ? (
+          <ThreeDots
+            visible={true}
+            height="80"
+            width="80"
+            color="#4fa94d"
+            radius="9"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        ) : (
+          <button
+            onClick={handleResentOtp}
+            className="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-black text-white"
+          >
+            Resent OTP
           </button>
         )}
       </div>

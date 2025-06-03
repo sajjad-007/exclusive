@@ -39,6 +39,7 @@ const SignuPage = () => {
       }
       setLoading(true);
       try {
+        // axios instance is used to seperate common api "http://localhost:3000/api/v1/" ;
         const response = await axiosinstance.post("registration", {
           firstName: firstName,
           email: email,
@@ -47,13 +48,14 @@ const SignuPage = () => {
         });
 
         if (response.statusText.toLocaleLowerCase === "OK".toLocaleLowerCase) {
-          toastInfo(`${response.data.data.firstName} please check your email`);
-          toastSuccess(response.data.message);
+          toastInfo(`${response?.data?.data?.firstName} please check your email`);
+          toastSuccess(response?.data?.message);
         }
       } catch (error) {
         console.error("error from axios", error);
         if (error.response) {
-          console.error("Server response error:", error.response.data);
+          console.error("Server response error:", error?.response?.data);
+          toastError(error?.response?.data?.message)
         }
       } finally {
         setLoading(false);
@@ -97,7 +99,7 @@ const SignuPage = () => {
                     name="firstName"
                     placeholder="firstName"
                     onChange={Formik.handleChange}
-                    value={Formik.values.firstName}
+                    value={Formik.values?.firstName}
                     className="w-[370px] border-b border-solid border-b-slate-300 py-2 font-poppins font-normal text-text2-black text-base leading-6"
                   />
                   {Formik.touched.firstName && Formik.errors.firstName ? (
