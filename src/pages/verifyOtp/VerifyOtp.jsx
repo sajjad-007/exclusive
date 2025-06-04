@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { axiosinstance } from "../../../helper/axios";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import {
   toastSuccess,
@@ -11,6 +11,7 @@ import {
 const VerifyOtp = () => {
   const params = useParams();
   const { email } = params;
+  const navigate = useNavigate()
   const [otp, setOtp] = useState();
   const [loading, setLoading] = useState(false);
   const [loadingg, setLoadingg] = useState(false);
@@ -26,6 +27,10 @@ const VerifyOtp = () => {
       });
       if (response.statusText.toLocaleLowerCase === "OK".toLocaleLowerCase) {
         toastSuccess(response.data.message);
+        setTimeout(() => {
+          
+          navigate('/login')
+        }, 1000);
       }
     } catch (error) {
       console.error("Error from otpVerify", error);

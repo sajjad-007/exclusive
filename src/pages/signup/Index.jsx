@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../../component/button/Button";
 import login from "../../assets/login/login.png";
 import { useFormik } from "formik";
-import LoginValidation from "../../validation/auth/LoginValidation";
+import RegValidation from "../../validation/auth/RegValidation.jsx";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEye } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
@@ -20,6 +20,7 @@ import { axiosinstance } from "../../../helper/axios.js";
 const SignuPage = () => {
   const [showHide, setShowHide] = useState(false);
   const [loading, setLoading] = useState(false);
+  //initialValues user given value from input
   const initialValues = {
     firstName: "",
     email: "",
@@ -30,7 +31,7 @@ const SignuPage = () => {
 
   const Formik = useFormik({
     initialValues: initialValues,
-    validationSchema: LoginValidation,
+    validationSchema: RegValidation,
     onSubmit: async (values) => {
       // alert(JSON.stringify(values, null, 2));
       const { firstName, email, phoneNumber, password, termAccept } = values;
@@ -48,14 +49,16 @@ const SignuPage = () => {
         });
 
         if (response.statusText.toLocaleLowerCase === "OK".toLocaleLowerCase) {
-          toastInfo(`${response?.data?.data?.firstName} please check your email`);
+          toastInfo(
+            `${response?.data?.data?.firstName} please check your email`
+          );
           toastSuccess(response?.data?.message);
         }
       } catch (error) {
         console.error("error from axios", error);
         if (error.response) {
           console.error("Server response error:", error?.response?.data);
-          toastError(error?.response?.data?.message)
+          toastError(error?.response?.data?.message);
         }
       } finally {
         setLoading(false);
@@ -133,7 +136,7 @@ const SignuPage = () => {
                   ) : null}
                   {/*  Phone number section End*/}
 
-                  {/* password section */}
+                  {/* Password section start*/}
                   <div className="relative">
                     <input
                       type={`${showHide ? "text" : "password"}`}
@@ -162,7 +165,8 @@ const SignuPage = () => {
                   {Formik.touched.password && Formik.errors.password ? (
                     <p className="text-red-600">{Formik.errors.password}</p>
                   ) : null}
-
+                  {/* Password section end */}
+                  
                   {/* Checkbox terms and condtion start */}
                   <div className="flex gap-4 ">
                     <input

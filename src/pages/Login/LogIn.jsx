@@ -5,9 +5,17 @@ import { useFormik } from "formik";
 import LoginValidation from "../../validation/auth/LoginValidation";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEye } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toastError, toastSuccess } from "../../component/utility/toastify";
+import { axiosinstance } from "../../../helper/axios";
+import { ThreeDots } from "react-loader-spinner";
+
 const LogIn = () => {
   const [showHide, setShowHide] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
+  //initialValues user given value from input
   const initialValues = {
     emailOrphoneNumber: "",
     password: "",
@@ -15,11 +23,36 @@ const LogIn = () => {
   const Formik = useFormik({
     initialValues: initialValues,
     validationSchema: LoginValidation,
-    onSubmit: (values) => {
-      // console.log(values);
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      const { emailOrphoneNumber, password } = values;
+      setLoading(true);
+      try {
+        const response = await axiosinstance.post(
+          "login",
+          {
+            emailOrphoneNumber: emailOrphoneNumber,
+            password: password,
+          },
+          {
+            //local stroage er cookies a access token save korar jonno eita use korte hobe
+            withCredentials: true,
+          }
+        );
+
+        if (response.statusText.toLowerCase === "OK".toLowerCase) {
+          toastSuccess(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error from axios", error);
+        toastError(error?.response?.data?.message);
+      } finally {
+        setLoading(false);
+      }
     },
   });
+  const handleForgetPass = () => {
+    navigate('/forgetpassword')
+  }
   const handleHideShow = () => {
     setShowHide(!showHide);
   };
@@ -95,28 +128,41 @@ const LogIn = () => {
                     <p className="text-red-600">{Formik.errors.password}</p>
                   ) : null}
                   <div className="flex items-center gap-[87px]">
-                    <Button
-                      type="submit"
-                      text="log in"
-                      className="common_btn py-4 px-12"
-                    />
-                    <p className="font-poppins font-normal text-secondary2-db44 text-base leading-6 capitalize cursor-pointer">
+                    {loading ? (
+                      <ThreeDots
+                        visible={true}
+                        height="60"
+                        width="60"
+                        color="#4fa94d"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                    ) : (
+                      <Button
+                        type="submit"
+                        text="log in"
+                        className="common_btn py-4 px-12"
+                      />
+                    )}
+                    <p className="font-poppins font-normal text-secondary2-db44 text-base leading-6 capitalize cursor-pointer" onClick={handleForgetPass}>
                       forget password?
                     </p>
                   </div>
-                  <div className="flex gap-3 mt-7">
-                    <p className="font-poppins font-normal text-text-7d8 text-base leading-6  ">
-                      Don't have an account?
-                    </p>
-                    <Link
-                      to="/signup"
-                      className="font-poppins font-medium text-text-7d8 text-base leading-6 capitalize underline"
-                    >
-                      Create account
-                    </Link>
-                  </div>
                 </div>
               </form>
+              <div className="flex gap-3 mt-7">
+                <p className="font-poppins font-normal text-text-7d8 text-base leading-6  ">
+                  Don't have an account?
+                </p>
+                <Link
+                  to="/signup"
+                  className="font-poppins font-medium text-text-7d8 text-base leading-6 capitalize underline"
+                >
+                  Create account
+                </Link>
+              </div>
             </div>
           </div>
         </div>
