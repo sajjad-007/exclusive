@@ -21,6 +21,7 @@ import CheckOut from "./pages/Checkout/CheckOut";
 import ToastNotifier from "./component/utility/Toastify.jsx";
 import VerifyOtp from "./pages/verifyOtp/VerifyOtp.jsx";
 import ForgetPassword from "./pages/forgetPassword/ForgetPassword.jsx";
+import ChangePassword from "./pages/changePassword/ChangePassword.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -41,6 +42,7 @@ function App() {
         <Route path="/checkout" element={<CheckOut />} />
         <Route path="/verifyOtp/:email" element={<VerifyOtp />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
+        <Route path="/changepassword" element={<ChangePassword />} />
         <Route path={"*"} element={<Error />} />
       </Route>
     )

@@ -9,12 +9,13 @@ import { useNavigate } from "react-router-dom";
 import { IoEye } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 
-const ForgetPassword = () => {
+const ChangePassword = () => {
   const [loading, setLoading] = useState(false);
   const [showHide, setShowHide] = useState(false);
   const navigate = useNavigate();
   const initialValues = {
     email: "",
+    oldPass: "",
     newPassword: "",
     confirmPassword: "",
     termAccept: false,
@@ -58,11 +59,11 @@ const ForgetPassword = () => {
     setShowHide(!showHide);
   };
   return (
-    <section className=" min-h-screen flex items-center justify-center px-6 py-8 ">
+    <section className=" min-h-screen flex items-center justify-center px-6 py-8 my-16">
       <div className="flex flex-col items-center w-full sm:max-w-md">
         <div className="shadow-2xl w-full p-6 bg-white rounded-lg dark:border dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <h2 className="mb-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-            Forget Password
+            Change Password
           </h2>
           <form onSubmit={Formik.handleSubmit} className="space-y-4">
             {/* Email part End*/}
@@ -86,21 +87,21 @@ const ForgetPassword = () => {
             </div>
             {/* Email part start */}
 
-            {/* new password part Start  */}
+            {/* Old password part Start  */}
             <div className="relative">
               <label
                 htmlFor="password"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                New Password
+                Current Password
               </label>
               <input
                 type={`${showHide ? "text" : "password"}`}
-                name="newPassword"
-                id="newPassword"
+                name="oldPass"
+                id="oldPass"
                 placeholder="••••••••"
                 onChange={Formik.handleChange}
-                value={Formik.values.newPassword}
+                value={Formik.values.oldPass}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 required
               />
@@ -120,8 +121,29 @@ const ForgetPassword = () => {
                 </span>
               )}
             </div>
-            {/* new Password part End */}
+            {/* Old Password part End */}
 
+            {/* New password part Start  */}
+            <div>
+              <label
+                htmlFor="password"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                New Password
+              </label>
+              <input
+                type="password"
+                name="newPassword"
+                id="newPassword"
+                placeholder="••••••••"
+                onChange={Formik.handleChange}
+                value={Formik.values.newPassword}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                required
+              />
+            </div>
+
+            {/* New password part End  */}
             {/* Confirm password part Start */}
             <div>
               <label
@@ -189,7 +211,7 @@ const ForgetPassword = () => {
                 type="submit"
                 className="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-primary-fff bg-bg-gray-700 text-primary-fff capitalize ml-28 "
               >
-                reset password
+                change password
               </button>
             )}
           </form>
@@ -199,4 +221,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default ChangePassword;
