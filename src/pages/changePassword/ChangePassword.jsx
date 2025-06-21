@@ -59,7 +59,7 @@ const ChangePassword = () => {
     setShowHide(!showHide);
   };
   return (
-    <section className=" min-h-screen flex items-center justify-center px-6 py-8 my-16">
+    <section className=" min-h-screen flex items-center justify-center ">
       <div className="flex flex-col items-center w-full sm:max-w-md">
         <div className="shadow-2xl w-full p-6 bg-white rounded-lg dark:border dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <h2 className="mb-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

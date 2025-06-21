@@ -14,6 +14,7 @@ import Heading from "../../component/common/commonComponet/Heading";
 import ProductCart from "../../component/common/commonComponet/ProductCart";
 // import ProductSkeleton from "../../component/helpers/ProductSkeleton";
 import Slider from "react-slick";
+
 const ProductDetails = () => {
   const params = useParams();
   const { data, isLoading, error } = useGetSingleProductDetailsQuery(
@@ -59,7 +60,7 @@ const ProductDetails = () => {
         <div className="main_bottom mt-36 ">
           <Heading title="related item" description={false} />
           <div className="custom-slider cursor-grab ">
-            <Slider {...settings}  >
+            <Slider {...settings}>
               {relatedProduct?.data?.data?.product?.map((item, index) => (
                 <div className="px-7 " key={index}>
                   <ProductCart itemData={item} />

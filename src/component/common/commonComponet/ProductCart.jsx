@@ -8,14 +8,26 @@ import Star from "./Star";
 import { Link } from "react-router-dom";
 import { addtoCart } from "../../../features/counter/productSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useAddtoCartMutation } from "../../../features/Api/exclusiveApi";
+import { toastError, toastSuccess } from "../../utility/toastify";
 
 const ProductCart = ({ itemData }) => {
   // console.log(itemData._id);
-  const dispatch = useDispatch()
-  const handleAddtoCart = (item) => {
-    dispatch(addtoCart(item))
-  }
+  const dispatch = useDispatch();
+  const [AddtoCart] = useAddtoCartMutation()
+  const handleAddtoCart = async ({_id}) => {
+    try {
+      const response = await AddtoCart({product: _id})
+       if(response){
+        toastSuccess(response?.data?.message)
+        console.log(response)
+      }
+    } catch (error) {
+      console.error("error form addtocart",error)
+      toastError(`${error}`?.data?.message)
+    }
+    
+  };
   return (
     <div className="main w-full my-[20px]">
       <div className="main_wrapper">
@@ -70,8 +82,11 @@ const ProductCart = ({ itemData }) => {
             </Link>
           </div>
           {/* //add to cart */}
-          <div className="absolute bottom-[-42px]  left-0  h-9 w-full bg-text2-black px-3 py-5 rounded-b-md  flex items-center justify-center capitalize group-hover:bottom-[-1px] transition-all ease-linear duration-200 cursor-pointer" onClick={()=> handleAddtoCart(itemData)}>
-            <h4 className="text-primary-fff font-poppins text-[16px] font-medium leading-6" >
+          <div
+            className="absolute bottom-[-42px]  left-0  h-9 w-full bg-text2-black px-3 py-5 rounded-b-md  flex items-center justify-center capitalize group-hover:bottom-[-1px] transition-all ease-linear duration-200 cursor-pointer"
+            onClick={() => handleAddtoCart(itemData)}
+          >
+            <h4 className="text-primary-fff font-poppins text-[16px] font-medium leading-6">
               add to cart
             </h4>
           </div>

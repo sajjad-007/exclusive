@@ -27,6 +27,7 @@ const LogIn = () => {
       const { emailOrphoneNumber, password } = values;
       setLoading(true);
       try {
+        // "login" => api endpoint
         const response = await axiosinstance.post(
           "login",
           {

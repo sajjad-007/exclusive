@@ -26,20 +26,22 @@ import ChangePassword from "./pages/changePassword/ChangePassword.jsx";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<RootLayOut />}>
-        <Route path="/home" element={<Homepage />} />
-        <Route path="/" element={<Homepage />} />
-        <Route path="/contact" element={<Contactpage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/product" element={<ProductPage />} />
-        <Route path="/productDetails" element={<ProductPage />} />
-        <Route path="/productDetails/:id" element={<ProductDetails />} />
-        <Route path="/signup" element={<SignuPage />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/wishlist" element={<WishList />} />
-        <Route path="/cart" element={<AddToCart />} />
-        <Route path="/account" element={<MyAccount />} />
-        <Route path="/checkout" element={<CheckOut />} />
+      <Route>
+        <Route element={<RootLayOut />}>
+          <Route path="/home" element={<Homepage />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/contact" element={<Contactpage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/product" element={<ProductPage />} />
+          <Route path="/productDetails" element={<ProductPage />} />
+          <Route path="/productDetails/:id" element={<ProductDetails />} />
+          <Route path="/signup" element={<SignuPage />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/cart" element={<AddToCart />} />
+          <Route path="/account" element={<MyAccount />} />
+          <Route path="/checkout" element={<CheckOut />} />
+        </Route>
         <Route path="/verifyOtp/:email" element={<VerifyOtp />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/changepassword" element={<ChangePassword />} />
@@ -50,7 +52,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <ToastNotifier/>
+      <ToastNotifier />
     </>
   );
 }

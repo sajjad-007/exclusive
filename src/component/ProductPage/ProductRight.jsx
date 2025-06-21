@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { useGetAllProductQuery } from "../../features/Api/exclusiveApi";
 import ProductCart from "../common/commonComponet/ProductCart";
 import ShopByCategorySkeleton from "../helpers/ShopByCategorySkeleton";
+
 const ProductRight = () => {
   const { data, error, isLoading } = useGetAllProductQuery();
-  const productMap = data?.data?.map((item)=>{
-    return item
-  })
+  const productMap = data?.data?.map((item) => {
+    return item;
+  });
   // console.log(data)
   const [page, setpage] = useState(1);
   const [pagePerShow, setpagePerShow] = useState(9);
   let myLength = productMap?.length;
   let pageLength = Math.ceil(myLength / 9);
-  
+
   let handlePaging = (index) => {
     if (index > 0 && index <= pageLength) {
       setpage(index);
@@ -40,13 +41,11 @@ const ProductRight = () => {
         <ShopByCategorySkeleton />
       ) : (
         <div className="body flex flex-wrap gap-7 items-center justify-between">
-          {productMap
-            ?.slice(page * 9 - 9, page * pagePerShow)
-            .map((item) => (
-              <div className="flex" key={item._id}>
-                <ProductCart itemData={item} />
-              </div>
-            ))}
+          {productMap?.slice(page * 9 - 9, page * pagePerShow).map((item) => (
+            <div className="flex" key={item._id}>
+              <ProductCart itemData={item} />
+            </div>
+          ))}
           {/* flowbite pagination */}
         </div>
       )}
@@ -58,7 +57,7 @@ const ProductRight = () => {
               <li>
                 <span
                   className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer"
-                  onClick={()=> handlePaging(page - 1)} 
+                  onClick={() => handlePaging(page - 1)}
                 >
                   Previous
                 </span>

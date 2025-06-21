@@ -6,25 +6,49 @@ import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "flowbite";
-import { removeCartItem,incrementAmount, decrementAmount, getTotal } from "../../features/counter/productSlice";
+import {
+  removeCartItem,
+  incrementAmount,
+  decrementAmount,
+  getTotal,
+} from "../../features/counter/productSlice";
 import AlertInfo from "../../component/Flowbite/AlertInfo";
-
+import { useGetSingleAddtoCartQuery,useRemoveAddtoCartMutation } from "../../features/Api/exclusiveApi";
+import { toastError, toastSuccess } from "../../component/utility/toastify";
 
 const AddToCart = () => {
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(getTotal())
-  },[localStorage.getItem("cart")])
-  const {totalAmount, totalItem, value} = useSelector((state) => state.cartProduct);
-  const handleRemoveCartitem = (item) => {
-    dispatch(removeCartItem(item));
-  };
-  let handleIncrement = (item) => {
-    dispatch(incrementAmount(item))
+  const { data, isLoading, isError } = useGetSingleAddtoCartQuery();
+  const [RemoveAddtoCart] = useRemoveAddtoCartMutation()
+  const handleRemoveCartitem = async({_id}) =>{
+    try {
+      const response = await RemoveAddtoCart(_id)
+      if(response){
+        toastSuccess(response?.data?.message)
+        console.log(response)
+      }
+    } catch (error) {
+      console.error("error from remvoe cartitem",error)
+      toastError(`${error}`?.data?.message)
+    }
   }
-  let handleDecrement = (item) => {
-    dispatch(decrementAmount(item))
-  }
+
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getTotal());
+  // }, [localStorage.getItem("cart")]);
+  // const { totalAmount, totalItem, value } = useSelector(
+  //   (state) => state.cartProduct
+  // );
+  // const handleRemoveCartitem = (item) => {
+  //   dispatch(removeCartItem(item));
+  // };
+  // let handleIncrement = (item) => {
+  //   dispatch(incrementAmount(item));
+  // };
+  // let handleDecrement = (item) => {
+  //   dispatch(decrementAmount(item));
+  // };
+
   return (
     <div>
       <div className="container">
@@ -47,10 +71,13 @@ const AddToCart = () => {
           </div>
         </div>
         {/* product head part or details part */}
-        {value?.length <= 0 ? (
+        {data?.data?.length <= 0 ? (
           <div>
-            <AlertInfo text="Your cart is empty purchase something..."/>
-            <Link to={"/product"} className="mb-52 mt-32 flex items-center justify-center">
+            <AlertInfo text="Your cart is empty purchase something..." />
+            <Link
+              to={"/product"}
+              className="mb-52 mt-32 flex items-center justify-center"
+            >
               <button
                 className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 
                   hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 
@@ -64,12 +91,12 @@ const AddToCart = () => {
           </div>
         ) : (
           <div className="h-[500px] overflow-y-scroll mb-9 scrollbar">
-            {value?.map((item) => (
-              <div key={item._id} className="flex flex-col gap-10">
+            {data?.data?.map((item) => (
+              <div key={item?._id} className="flex flex-col gap-10">
                 <div className="body py-6 px-10 shadow-md mb-10 rounded-md flex items-center justify-between">
                   <div className="font-poppins font-normal text-text2-black text-base leading-6 capitalize overflow-hidden flex gap-4 items-center flex-1 relative">
                     <img
-                      src={item?.image[0]}
+                      src={item?.product?.image[0]}
                       alt="not found"
                       className="h-12 w-12 object-fill group"
                     />
@@ -84,7 +111,7 @@ const AddToCart = () => {
                     </h6>
                   </div>
                   <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize pl-24">
-                    ${item?.price}
+                    ${item?.product?.price}
                   </div>
                   <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize flex justify-center items-center relative">
                     <input
@@ -93,16 +120,22 @@ const AddToCart = () => {
                       className="border border-text-7d8 rounded w-20 h-10 px-4 py-[6px]"
                     />
                     <div className="absolute flex flex-col left-[55%]">
-                      <span className="cursor-pointer text-base" onClick={()=> handleIncrement(item)}>
+                      <span
+                        className="cursor-pointer text-base"
+                        // onClick={() => handleIncrement(item)}
+                      >
                         <FaAngleUp />
                       </span>
-                      <span className="cursor-pointer text-base" onClick={()=> handleDecrement(item)}>
+                      <span
+                        className="cursor-pointer text-base"
+                        // onClick={() => handleDecrement(item)}
+                      >
                         <FaAngleDown />
                       </span>
                     </div>
                   </div>
                   <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize text-end">
-                    ${item?.quantity * item?.price}
+                    ${item?.quantity * item?.product?.price}
                   </div>
                 </div>
               </div>
@@ -143,17 +176,17 @@ const AddToCart = () => {
               {/* Subtotal */}
               <div className="w-[400px] border-b-[3px] border-solid border-b-slate-300 pb-4 flex items-center justify-between">
                 <h5 className="font-poppins font-medium text-text2-black leading-6 text-base capitalize">
-                  subtotal:
+                  Toatal Item:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base">
-                  ${totalItem}
+                  {/* {totalItem} */}
                 </span>
               </div>
               {/* Subtotal*/}
               {/* Shipping Fee */}
               <div className="w-[400px] border-b-[3px] border-solid border-b-slate-300 pb-4 flex items-center justify-between">
                 <h5 className="font-poppins font-medium text-text2-black leading-6 text-base capitalize">
-                  Shipping:
+                  Shipping fee:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base capitalize">
                   $0
@@ -163,10 +196,10 @@ const AddToCart = () => {
               {/* Total amount  */}
               <div className="w-[400px] flex items-center justify-between">
                 <h5 className="font-poppins font-medium text-text2-black leading-6 text-base capitalize">
-                  total:
+                  total price:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base">
-                  ${totalAmount}
+                  ${"Uncalculated"}  
                 </span>
               </div>
               {/* Total amount */}

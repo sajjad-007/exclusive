@@ -5,8 +5,10 @@ import { FaRegHeart } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
 import { LuRefreshCw } from "react-icons/lu";
 import UseDiscountCalculation from "../../Hook/UseDiscountCalculation";
-
+import { useAddtoCartMutation } from "../../features/Api/exclusiveApi";
+import { toastError, toastSuccess } from "../utility/toastify";
 const ProductContents = ({ data }) => {
+  const [AddtoCart] = useAddtoCartMutation()
   const sizeLoop = [
     { id: 1, sizein: " xs" },
     { id: 2, sizein: "s" },
@@ -26,7 +28,21 @@ const ProductContents = ({ data }) => {
     returnPolicy,
     shippingInformation,
     size,
+    _id,
   } = data;
+  
+  const handleAddtocart = async(_id) => {
+    try {
+      const response = await AddtoCart({product: _id})
+      if(response){
+        toastSuccess(response?.data?.message)
+      }
+      
+    } catch (error) {
+      console.error("error form addtocart",error)
+      toastError(`${error}`?.data?.message)
+    }
+  }
   // console.log(data);
   return (
     <div className="main">
@@ -110,7 +126,7 @@ const ProductContents = ({ data }) => {
           </div>
           {/* button */}
           <div>
-            <Button className="common_btn py-3 px-12" text="buy now" />
+            <Button className="common_btn py-3 px-12" text="add to cart" onClick={()=>handleAddtocart(_id)} />
           </div>
           <div className="flex items-center justify-center rounded h-12 w-12 text-text2-black border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-button-red hover:text-primary-fff hover:border-button-red group">
             <span className="text-text2-black font-poppins text-2xl font-semibold leading-5 uppercase  group-hover:text-primary-fff">

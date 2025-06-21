@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 
 const Error = () => {
   return (
-    <div className="container">
-      <div className="py-20">
+    <div className="container flex items-center justify-center mt-[200px]">
+      {/* <div className="py-20">
         <BreadCrumb />
-      </div>
+      </div> */}
       <div className="flex flex-col items-center justify-center gap-20">
         <div className=" flex flex-col items-center justify-center gap-10">
           <h1 className="font-inter font-medium text-text2-black text-[115px] leading-[115px] tracking-[3.3px]">
-            404 Not Found
+            404 Error
           </h1>
-          <p className="font-poppins font-normal text-base text-text2-black leading-6 ">
+          <p className="font-poppins font-normal text-lg text-text2-black leading-6 ">
             Your visited page not found. You may go home page.
           </p>
         </div>
