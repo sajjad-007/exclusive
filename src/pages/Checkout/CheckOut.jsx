@@ -9,7 +9,10 @@ import visaCardImg from "../../assets/checkout/visa.png";
 import nagad from "../../assets/checkout/nagad.png";
 import monitorImg from "../../assets/checkout/monitor.png";
 import Button from "../../component/button/Button";
+import { useGetSingleAddtoCartQuery } from "../../features/Api/exclusiveApi";
 const CheckOut = () => {
+  const { data, isLoading, isError } = useGetSingleAddtoCartQuery();
+  // console.log()
   return (
     <div className="container">
       <div className="py-20">
@@ -49,7 +52,7 @@ const CheckOut = () => {
                 htmlFor="first_name"
                 className="block mb-2 account_style text-text-7d8 font-poppins text-base leading-6 font-normal"
               >
-                Company Name
+                Company Name (optional)
               </label>
               <input
                 type="text"
@@ -84,13 +87,14 @@ const CheckOut = () => {
             </div>
             {/* street address end */}
 
-            {/* apartment start */}
+            {/* district start */}
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="first_name"
                 className="block mb-2 account_style text-text-7d8 font-poppins text-base leading-6 font-normal"
               >
-                Apartment, floor, etc. (optional)
+                district
+                <span className="text-secondary2-db44 text-base">*</span>
               </label>
               <input
                 type="text"
@@ -99,7 +103,7 @@ const CheckOut = () => {
                 className="bg-secondary-f5f rounded text-text2-black font-poppins text-base font-normal leading-6  border border-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               />
             </div>
-            {/* apartment end*/}
+            {/* district end*/}
 
             {/* town/city start */}
             <div className="flex flex-col gap-2">
@@ -188,37 +192,27 @@ const CheckOut = () => {
           </div>
           <div className="part2 w-[40%] mt-7 ">
             {/* product section start */}
-            <div className="flex flex-col gap-8">
-              <div className="product flex items-center w-[80%] flex-1 ">
-                <div className="font-poppins font-normal text-text2-black text-base leading-6 capitalize overflow-hidden flex gap-4 items-center w-[270px] ">
-                  <img
-                    src={MyImg}
-                    alt="not found"
-                    className="h-12 w-12 object-fill group"
-                  />
-                  <h6 className="font-poppins font-normal text-text2-black text-base leading-6 capitalize truncate ">
-                    gaming console
-                  </h6>
+            <div className="flex flex-col gap-6 h-[200px] overflow-y-scroll checkOut_scrollbar">
+              {data?.data?.findAllProduct.map((item, index) => (
+                <div
+                  className="product flex items-center w-[80%] flex-1 "
+                  key={index._id}
+                >
+                  <div className="font-poppins font-normal text-text2-black text-base leading-6 capitalize overflow-hidden flex gap-4 items-center w-[270px] ">
+                    <img
+                      src={item?.product?.image[0]}
+                      alt="not found"
+                      className="h-12 w-12 object-fill group"
+                    />
+                    <h6 className="font-poppins font-normal text-text2-black text-base leading-6 capitalize truncate ">
+                      {item?.product?.name}
+                    </h6>
+                  </div>
+                  <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize pl-24">
+                    ${item?.product?.price}
+                  </div>
                 </div>
-                <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize pl-24">
-                  $600
-                </div>
-              </div>
-              <div className="product flex items-center w-[80%] flex-1 ">
-                <div className="font-poppins font-normal text-text2-black text-base leading-6 capitalize overflow-hidden flex gap-4 items-center w-[270px] ">
-                  <img
-                    src={monitorImg}
-                    alt="not found"
-                    className="h-12 w-12 object-fill group"
-                  />
-                  <h6 className="font-poppins font-normal text-text2-black text-base leading-6 capitalize truncate ">
-                    LCD Monitor
-                  </h6>
-                </div>
-                <div className="flex-1 font-poppins font-normal text-text2-black text-base leading-6 capitalize pl-24">
-                  $600
-                </div>
-              </div>
+              ))}
             </div>
             {/* product section end */}
 
@@ -230,7 +224,7 @@ const CheckOut = () => {
                   subtotal:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base">
-                  $400
+                  ${data?.data?.productPriceQuantity?.totalPrice}
                 </span>
               </div>
               {/* Subtotal*/}
@@ -250,7 +244,7 @@ const CheckOut = () => {
                   total:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base">
-                  $400
+                  ${data?.data?.productPriceQuantity?.totalPrice}
                 </span>
               </div>
               {/* Total amount */}

@@ -13,24 +13,28 @@ import {
   getTotal,
 } from "../../features/counter/productSlice";
 import AlertInfo from "../../component/Flowbite/AlertInfo";
-import { useGetSingleAddtoCartQuery,useRemoveAddtoCartMutation } from "../../features/Api/exclusiveApi";
+import {
+  useGetSingleAddtoCartQuery,
+  useRemoveAddtoCartMutation,
+} from "../../features/Api/exclusiveApi";
 import { toastError, toastSuccess } from "../../component/utility/toastify";
 
 const AddToCart = () => {
   const { data, isLoading, isError } = useGetSingleAddtoCartQuery();
-  const [RemoveAddtoCart] = useRemoveAddtoCartMutation()
-  const handleRemoveCartitem = async({_id}) =>{
+  console.log();
+  const [RemoveAddtoCart] = useRemoveAddtoCartMutation();
+  const handleRemoveCartitem = async ({ _id }) => {
     try {
-      const response = await RemoveAddtoCart(_id)
-      if(response){
-        toastSuccess(response?.data?.message)
-        console.log(response)
+      const response = await RemoveAddtoCart(_id);
+      if (response) {
+        toastSuccess(response?.data?.message);
+        console.log(response);
       }
     } catch (error) {
-      console.error("error from remvoe cartitem",error)
-      toastError(`${error}`?.data?.message)
+      console.error("error from remvoe cartitem", error);
+      toastError(`${error}`?.data?.message);
     }
-  }
+  };
 
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -71,7 +75,7 @@ const AddToCart = () => {
           </div>
         </div>
         {/* product head part or details part */}
-        {data?.data?.length <= 0 ? (
+        {data?.data?.findAllProduct?.length <= 0 ? (
           <div>
             <AlertInfo text="Your cart is empty purchase something..." />
             <Link
@@ -91,7 +95,7 @@ const AddToCart = () => {
           </div>
         ) : (
           <div className="h-[500px] overflow-y-scroll mb-9 scrollbar">
-            {data?.data?.map((item) => (
+            {data?.data?.findAllProduct?.map((item) => (
               <div key={item?._id} className="flex flex-col gap-10">
                 <div className="body py-6 px-10 shadow-md mb-10 rounded-md flex items-center justify-between">
                   <div className="font-poppins font-normal text-text2-black text-base leading-6 capitalize overflow-hidden flex gap-4 items-center flex-1 relative">
@@ -179,7 +183,7 @@ const AddToCart = () => {
                   Toatal Item:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base">
-                  {/* {totalItem} */}
+                  {data?.data?.productPriceQuantity?.totalQuantity}
                 </span>
               </div>
               {/* Subtotal*/}
@@ -199,14 +203,17 @@ const AddToCart = () => {
                   total price:
                 </h5>
                 <span className="font-poppins font-medium text-text2-black leading-6 text-base">
-                  ${"Uncalculated"}  
+                  ${data?.data?.productPriceQuantity?.totalPrice}
                 </span>
               </div>
               {/* Total amount */}
             </div>
-            <div className="flex items-center justify-center my-10 ">
+            <Link
+              to={"/checkout"}
+              className="flex items-center justify-center my-10 "
+            >
               <button className="common_btn">Procees to checkout</button>
-            </div>
+            </Link>
           </div>
         </div>
         {/* footer part */}

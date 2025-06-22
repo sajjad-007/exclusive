@@ -54,6 +54,7 @@ export const exclusiveApi = createApi({
         url: `/addtocart/${cartId}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["cartItem"]
     }),
     GetSingleAddtoCart: builder.query({
       query: () => `addtocart`,

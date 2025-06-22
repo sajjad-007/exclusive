@@ -14,7 +14,7 @@ import { ThreeDots } from "react-loader-spinner";
 const LogIn = () => {
   const [showHide, setShowHide] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   //initialValues user given value from input
   const initialValues = {
     emailOrphoneNumber: "",
@@ -41,7 +41,8 @@ const LogIn = () => {
         );
 
         if (response.statusText.toLowerCase === "OK".toLowerCase) {
-          toastSuccess(response.data.message);
+          toastSuccess(response?.data?.message);
+          navigate("/")
         }
       } catch (error) {
         console.error("Error from axios", error);
@@ -52,8 +53,8 @@ const LogIn = () => {
     },
   });
   const handleForgetPass = () => {
-    navigate('/forgetpassword')
-  }
+    navigate("/forgetpassword");
+  };
   const handleHideShow = () => {
     setShowHide(!showHide);
   };
@@ -147,7 +148,10 @@ const LogIn = () => {
                         className="common_btn py-4 px-12"
                       />
                     )}
-                    <p className="font-poppins font-normal text-secondary2-db44 text-base leading-6 capitalize cursor-pointer" onClick={handleForgetPass}>
+                    <p
+                      className="font-poppins font-normal text-secondary2-db44 text-base leading-6 capitalize cursor-pointer"
+                      onClick={handleForgetPass}
+                    >
                       forget password?
                     </p>
                   </div>

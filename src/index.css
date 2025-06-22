@@ -142,11 +142,26 @@ h1 {
   }
   
   .scrollbar::-webkit-scrollbar-track {
-    background: var(--text-7d8);
-    height: 4px;
+    background: var(--primary-fff);
+    height: 2px;
   }
   
   .scrollbar::-webkit-scrollbar-thumb {
+    background: var(--secondary2-db44);
+    
+  }
+  /* my add to cart section scrollbar */
+  .checkOut_scrollbar::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+  }
+  
+  .checkOut_scrollbar::-webkit-scrollbar-track {
+    background: var(--primary-fff);
+    height: 5px;
+  }
+  
+  .checkOut_scrollbar::-webkit-scrollbar-thumb {
     background: var(--secondary2-db44);
   }
   .account_style {
