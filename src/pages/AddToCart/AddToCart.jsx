@@ -21,7 +21,10 @@ import { toastError, toastSuccess } from "../../component/utility/toastify";
 
 const AddToCart = () => {
   const { data, isLoading, isError } = useGetSingleAddtoCartQuery();
-  console.log();
+  //for checkout inputbox
+  const userInfo  = data?.data?.findAllProduct[0]?.user;
+  localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
   const [RemoveAddtoCart] = useRemoveAddtoCartMutation();
   const handleRemoveCartitem = async ({ _id }) => {
     try {
