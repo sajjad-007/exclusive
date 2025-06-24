@@ -60,6 +60,13 @@ export const exclusiveApi = createApi({
       query: () => `addtocart`,
       providesTags: ["cartItem"],
     }),
+    PlaceOrder: builder.mutation({
+      query: (data) => ({
+        url: "order",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
  
 });
@@ -80,4 +87,5 @@ export const {
   useAddtoCartMutation,
   useGetSingleAddtoCartQuery,
   useRemoveAddtoCartMutation,
+  usePlaceOrderMutation,
 } = exclusiveApi;
