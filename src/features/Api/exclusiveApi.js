@@ -62,7 +62,7 @@ export const exclusiveApi = createApi({
     }),
     PlaceOrder: builder.mutation({
       query: (data) => ({
-        url: "order",
+        url: `/order`,
         method: "POST",
         body: data,
       }),

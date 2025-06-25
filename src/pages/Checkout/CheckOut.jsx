@@ -57,21 +57,21 @@ const CheckOut = () => {
     try {
       const orderData = {
         customerInfo: {
-          firstName: userValue.firstName,
-          address: userValue.address,
-          city: userValue.city,
-          district: userValue.district,
-          phoneNumber: parseInt(userValue.phoneNumber),
-          email: userValue.email,
-          postcode: parseInt(userValue.postcode),
+          firstName: userValue?.firstName,
+          address: userValue?.address,
+          city: userValue?.city,
+          district: userValue?.district,
+          phoneNumber: parseInt(userValue?.phoneNumber),
+          email: userValue?.email,
+          postcode: parseInt(userValue?.postcode),
         },
         paymentInfo: {
-          paymentmethod: userValue.paymentMethod,
+          paymentmethod: userValue?.paymentMethod,
           ispaid: true,
         },
       };
       const response = await PlaceOrder(orderData).unwrap();
-      if(response.url){
+      if(response?.url){
         window.location.href = response.url
       }
     } catch (error) {
@@ -292,7 +292,7 @@ const CheckOut = () => {
               {/* Apply coupon end */}
 
               {/* Button start */}
-              <Button type="submit" text="place order" className={orderLoading ? "loading...": "common_btn"} />
+              <Button type="submit" text={orderLoading ? "loading...": "place your order"} className="common_btn" />
               {/* Button end */}
             </div>
           </form>

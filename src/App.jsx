@@ -22,6 +22,8 @@ import ToastNotifier from "./component/utility/Toastify.jsx";
 import VerifyOtp from "./pages/verifyOtp/VerifyOtp.jsx";
 import ForgetPassword from "./pages/forgetPassword/ForgetPassword.jsx";
 import ChangePassword from "./pages/changePassword/ChangePassword.jsx";
+import Success from "./pages/paymentpages/Success.jsx";
+import Failed from "./pages/paymentpages/Failed.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -45,6 +47,8 @@ function App() {
         <Route path="/verifyOtp/:email" element={<VerifyOtp />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/changepassword" element={<ChangePassword />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/fail" element={<Failed />} />
         <Route path={"*"} element={<Error />} />
       </Route>
     )
