@@ -9,13 +9,19 @@ import { FiShoppingBag } from "react-icons/fi";
 import { RxCrossCircled } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
 import { useSelector } from "react-redux";
+import { useGetSingleAddtoCartQuery } from "../../features/Api/exclusiveApi";
 
 const Navbar = () => {
   const [account, setAccount] = useState(false);
-  const {totalItem} = useSelector((state) => state.cartProduct);
+  const { totalItem } = useSelector((state) => state.cartProduct);
   let handleDropdown = (event) => {
     setAccount(!account);
   };
+  const { data } = useGetSingleAddtoCartQuery();
+  
+  const categoryLength = data?.data?.findAllProduct?.map((item)=>(
+    item
+  ))
   const navItem = [
     {
       id: 1,
@@ -79,7 +85,10 @@ const Navbar = () => {
                 <IoMdHeartEmpty />
               </span>
               <Link to="/cart">
-                <span className="text-2xl cursor-pointer numberIcon" data-amount={totalItem}>
+                <span
+                  className="text-2xl cursor-pointer numberIcon"
+                  data-amount={categoryLength?.length}
+                >
                   <MdShoppingCart />
                 </span>
               </Link>

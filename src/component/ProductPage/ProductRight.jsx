@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGetAllProductQuery } from "../../features/Api/exclusiveApi";
+import { useGetAllProductQuery, useGetSingleAddtoCartQuery } from "../../features/Api/exclusiveApi";
 import ProductCart from "../common/commonComponet/ProductCart";
 import ShopByCategorySkeleton from "../helpers/ShopByCategorySkeleton";
 
@@ -8,6 +8,7 @@ const ProductRight = () => {
   const productMap = data?.data?.map((item) => {
     return item;
   });
+  const { data:allCatdata } = useGetSingleAddtoCartQuery();
   // console.log(data)
   const [page, setpage] = useState(1);
   const [pagePerShow, setpagePerShow] = useState(9);

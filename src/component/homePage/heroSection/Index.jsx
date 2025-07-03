@@ -83,7 +83,7 @@ const HeroSection = () => {
           ) : (
             <>
               {/* hero section side category */}
-              <div className="w-[21%] border-r-2 border-r-text-7d8 pt-10 flex flex-col gap-4 ">
+              <div className="w-[21%] h-[550px] overflow-y-scroll border-r-2 border-r-text-7d8 pt-10 flex flex-col gap-4 heroSection_scrollbar">
                 {category?.data?.data?.map((item) => (
                   <>
                     <div
@@ -91,13 +91,15 @@ const HeroSection = () => {
                       key={item._id}
                       onClick={() => handleDropDown(item._id)}
                     >
-                      <ul className="text-lg capitalize font-normal font-poppins leading-6 text-text2-black pl-0 group-hover:text-primary-fff group-hover:pl-2 transition-all ease-linear duration-200 flex items-center justify-between bg-primary-fff hover:bg-blue-400 w-full py-3">
+                      <ul className="text-lg capitalize font-normal font-poppins leading-6 text-text2-black group-hover:text-primary-fff group-hover:pl-2 transition-all ease-linear duration-200 flex items-center justify-between bg-primary-fff hover:bg-[#cccdce8f]  pl-2 rounded-md w-full py-3">
                         <li key={item._id}>{item.name}</li>
                         {item.subCategory?.length > 0 &&
                           (dropdown === item._id ? (
-                            <FaChevronDown />
+                            <span className="transition-all ease-linear duration-200 pr-2">
+                              <FaChevronDown />
+                            </span>
                           ) : (
-                            <span className="group-hover:text-text-faf transition-all ease-linear duration-200 ">
+                            <span className="group-hover:text-text-faf transition-all ease-linear duration-200 pr-2 ">
                               <FaChevronRight />
                             </span>
                           ))}
@@ -110,8 +112,8 @@ const HeroSection = () => {
                       >
                         {item?.subCategory &&
                           item?.subCategory?.map((subItem) => (
-                            <ul className="mb-4" key={subItem._id}>
-                              <li className="bg-slate-500 text-primary-fff py-2 px-2">
+                            <ul className="mb-2" key={subItem._id}>
+                              <li className="font-poppins text-lg font-medium py-2 pl-3 hover:bg-[#e0e4e775] hover:text-text2-black rounded-md ">
                                 {subItem.name}
                               </li>
                             </ul>
@@ -130,7 +132,7 @@ const HeroSection = () => {
                     {data?.data.map((banners) => (
                       <div
                         key={banners._id}
-                        className="h-[420px] w-full object-cover"
+                        className="h-[500px] w-full object-cover"
                       >
                         <img
                           src={banners.image}

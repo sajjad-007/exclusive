@@ -164,6 +164,20 @@ h1 {
   .checkOut_scrollbar::-webkit-scrollbar-thumb {
     background: var(--secondary2-db44);
   }
+  /* hero section scrollbar */
+  .heroSection_scrollbar::-webkit-scrollbar {
+    width: 0px;
+    border-radius: 10px;
+  }
+  
+  .heroSection_scrollbar::-webkit-scrollbar-track {
+    background: var(--primary-fff);
+    height: 5px;
+  }
+  .heroSection_scrollbar::-webkit-scrollbar-thumb {
+    /* background: var(--secondary2-db44); */
+    background: #ffffff8f;
+  }
   .account_style {
     font-family: var(--poppins);
     font-size: 16px;

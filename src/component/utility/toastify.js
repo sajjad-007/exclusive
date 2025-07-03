@@ -15,9 +15,9 @@ const toastSuccess = (msg) => {
 };
 
 const toastError = (msg) => {
-  toast.error(msg || "🦄 Wow so easy!", {
+  toast.error(msg || "🦄 Wow so many error!", {
     position: "top-right",
-    autoClose: 2000,
+    autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: false,
     pauseOnHover: true,
@@ -31,7 +31,7 @@ const toastError = (msg) => {
 const toastInfo = (msg) => {
   toast.info(msg || "🦄 Wow so easy!", {
     position: "top-right",
-    autoClose: 2000,
+    autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: false,
     pauseOnHover: true,

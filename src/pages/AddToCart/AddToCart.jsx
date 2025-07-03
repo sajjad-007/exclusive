@@ -31,7 +31,6 @@ const AddToCart = () => {
       const response = await RemoveAddtoCart(_id);
       if (response) {
         toastSuccess(response?.data?.message);
-        console.log(response);
       }
     } catch (error) {
       console.error("error from remvoe cartitem", error);

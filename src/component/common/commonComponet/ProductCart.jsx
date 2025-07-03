@@ -14,19 +14,21 @@ import { toastError, toastSuccess } from "../../utility/toastify";
 const ProductCart = ({ itemData }) => {
   // console.log(itemData._id);
   const dispatch = useDispatch();
-  const [AddtoCart] = useAddtoCartMutation()
-  const handleAddtoCart = async ({_id}) => {
+  const [AddtoCart] = useAddtoCartMutation();
+  const handleAddtoCart = async ({ _id }) => {
     try {
-      const response = await AddtoCart({product: _id})
-       if(response){
-        toastSuccess(response?.data?.message)
-        console.log(response)
+      const response = await AddtoCart({ product: _id });
+      if (response?.data) {
+        toastSuccess(response?.data?.message);
+        
+      }else{
+        toastError(response.error.data.message);
+
       }
     } catch (error) {
-      console.error("error form addtocart",error)
-      toastError(`${error}`?.data?.message)
+      console.error("error form addtocart", error);
+      toastError(`${error}`?.data?.message);
     }
-    
   };
   return (
     <div className="main w-full my-[20px]">
