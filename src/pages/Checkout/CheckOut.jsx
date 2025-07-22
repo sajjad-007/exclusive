@@ -6,7 +6,7 @@ import { RiVisaLine } from "react-icons/ri";
 import bkashImg from "../../assets/checkout/bkash.png";
 import masterCardImg from "../../assets/checkout/master_card.png";
 import visaCardImg from "../../assets/checkout/visa.png";
-import nagad from "../../assets/checkout/nagad.png";
+import nagad from "../../assets/checkout/Nagad.png";
 import monitorImg from "../../assets/checkout/monitor.png";
 import Button from "../../component/button/Button";
 import { useGetSingleAddtoCartQuery } from "../../features/Api/exclusiveApi";
