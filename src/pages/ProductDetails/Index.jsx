@@ -20,7 +20,6 @@ const ProductDetails = () => {
   const { data, isLoading, error } = useGetSingleProductDetailsQuery(
     params?.id
   );
-  // console.log();
   const relatedProduct = useGetSingleCategoryQuery(data?.data?.category);
   // console.log(relatedProduct.data.data.product)
   const relatedCategory = useGetAllBestSellingQuery();

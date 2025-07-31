@@ -48,7 +48,7 @@ const ProductContents = ({ data }) => {
     <div className="main">
       <div className="head border-b-2 border-solid border-text-7d8 pb-6">
         <h1 className="font-inter font-semibold text-text2-black text-2xl leading-6 tracking-[0.72px]">
-          {name ? name : "Havic HV G-92 Gamepad"}
+          {name ? name : 'Havic HV G-92 Gamepad'}
         </h1>
         <div className="flex items-center gap-2 my-4">
           <span>
@@ -58,7 +58,7 @@ const ProductContents = ({ data }) => {
             {`review (${review})`}
           </span>
           <span className="font-poppins font-normal text-button-green text-sm leading-5 capitalize border-l-2 border-solid border-text-7d8 pl-4">
-            {stock ? stock : "in stock"} stock
+            {stock ? stock : 'in stock'} stock
           </span>
         </div>
         <span className="font-inter font-normal text-text2-black text-2xl leading-5 tracking-[0.72px]">
@@ -67,8 +67,11 @@ const ProductContents = ({ data }) => {
         <span className="font-inter font-normal text-text-7d8 text-2xl leading-5 tracking-[0.72px] line-through ml-4">
           ${price}
         </span>
-        <p className="font-poppins font-normal text-text2-black text-sm leading-5 mt-6">
-          {description ? description : "Description missing"}
+        <p
+          className="font-poppins font-normal text-text2-black text-sm leading-5 mt-6"
+          dangerouslySetInnerHTML={{ __html: description }}
+        >
+          {/* {description ? description : 'Description missing'} */}
         </p>
       </div>
       <div className="body">
@@ -92,13 +95,13 @@ const ProductContents = ({ data }) => {
             size:
           </span>
           <div className="flex items-center gap-x-4">
-            {sizeLoop?.map((itemSize) => (
+            {sizeLoop?.map(itemSize => (
               <div
                 key={itemSize?.id}
                 className={
                   itemSize?.sizein.toLowerCase() === size?.toLowerCase()
-                    ? "flex bg-button-red items-center justify-center rounded h-9 w-9 text-primary-fff border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-text-7d8 hover:text-primary-fff"
-                    : "flex  items-center justify-center rounded h-9 w-9 text-text2-black border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-text-7d8 hover:text-primary-fff"
+                    ? 'flex bg-button-red items-center justify-center rounded h-9 w-9 text-primary-fff border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-text-7d8 hover:text-primary-fff'
+                    : 'flex  items-center justify-center rounded h-9 w-9 text-text2-black border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-text-7d8 hover:text-primary-fff'
                 }
               >
                 <span className="font-poppins text-sm font-semibold leading-5 uppercase">
@@ -126,7 +129,11 @@ const ProductContents = ({ data }) => {
           </div>
           {/* button */}
           <div>
-            <Button className="common_btn py-3 px-12" text="add to cart" onClick={()=>handleAddtocart(_id)} />
+            <Button
+              className="common_btn py-3 px-12"
+              text="add to cart"
+              onClick={() => handleAddtocart(_id)}
+            />
           </div>
           <div className="flex items-center justify-center rounded h-12 w-12 text-text2-black border-[1px] border-solid border-gray-300 cursor-pointer py-[6px] px-[7px] hover:bg-button-red hover:text-primary-fff hover:border-button-red group">
             <span className="text-text2-black font-poppins text-2xl font-semibold leading-5 uppercase  group-hover:text-primary-fff">
@@ -146,7 +153,7 @@ const ProductContents = ({ data }) => {
               free delivery
             </span>
             <span className="inline-block font-poppins text-xs font-medium leading-5 text-text2-black underline">
-              {shippingInformation ? shippingInformation : "missing"}
+              {shippingInformation ? shippingInformation : 'missing'}
             </span>
           </div>
         </div>
@@ -159,7 +166,7 @@ const ProductContents = ({ data }) => {
               Return Delivery
             </span>
             <span className="inline-block font-poppins text-xs font-medium leading-5 text-text2-black">
-              {returnPolicy ? returnPolicy : "missing"}
+              {returnPolicy ? returnPolicy : 'missing'}
             </span>
           </div>
         </div>
