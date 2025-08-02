@@ -31,7 +31,7 @@ const ProductDetails = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
   };
@@ -60,7 +60,7 @@ const ProductDetails = () => {
           <Heading title="related item" description={false} />
           <div className="custom-slider cursor-grab ">
             <Slider {...settings}>
-              {relatedProduct?.data?.data?.product?.map((item, index) => (
+              {nowMap?.map((item, index) => (
                 <div className="px-7 " key={index}>
                   <ProductCart itemData={item} />
                 </div>

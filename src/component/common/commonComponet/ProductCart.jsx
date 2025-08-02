@@ -12,7 +12,7 @@ import { useAddtoCartMutation } from "../../../features/Api/exclusiveApi";
 import { toastError, toastSuccess } from "../../utility/toastify";
 
 const ProductCart = ({ itemData }) => {
-  // console.log(itemData._id);
+  // console.log(itemData);
   const dispatch = useDispatch();
   const [AddtoCart] = useAddtoCartMutation();
   const handleAddtoCart = async ({ _id }) => {

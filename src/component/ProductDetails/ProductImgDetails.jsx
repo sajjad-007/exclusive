@@ -22,7 +22,7 @@ const ProductImgDetails = ({ image }) => {
           </div>
         ))}
         
-        <div className="child1 w-[170px] h-[138px] py-3 px-6 bg-secondary-f5f flex items-start justify-center rounded cursor-pointer">
+        {/* <div className="child1 w-[170px] h-[138px] py-3 px-6 bg-secondary-f5f flex items-start justify-center rounded cursor-pointer">
           <img
             src={
               "https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -35,7 +35,7 @@ const ProductImgDetails = ({ image }) => {
               )
             }
           />
-        </div>
+        </div> */}
       </div>
       {/* big img part */}
       <div className="big_img w-[74%] h-full bg-secondary-f5f px-7 pt-[130px]  pb-[90px]   flex items-center justify-center rounded">

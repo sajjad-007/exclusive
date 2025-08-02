@@ -117,13 +117,13 @@ const ProductContents = ({ data }) => {
         <div className="flex items-center justify-between gap-4 mt-6">
           {/* increment */}
           <div>
-            <span className="inline-block py-3 px-4 text-text2-black font-poppins text-2xl font-medium leading-7 border-2 border-solid rounded-l-lg border-gray-300 hover:bg-button-red hover:text-primary-fff hover:border-button-red cursor-pointer">
+            <span className="inline-block py-2 px-3 text-text2-black font-poppins text-2xl font-medium leading-7 border-2 border-solid rounded-l-lg border-gray-300 hover:bg-button-red hover:text-primary-fff hover:border-button-red cursor-pointer">
               -
             </span>
-            <span className="inline-block py-3 px-7 text-text2-black font-poppins text-2xl font-medium leading-7 border-2 border-solid border-gray-300 hover:bg-button-red hover:text-primary-fff hover:border-button-red cursor-pointer">
+            <span className="inline-block py-2 px-3 text-text2-black font-poppins text-2xl font-medium leading-7 border-2 border-solid border-gray-300 hover:bg-button-red hover:text-primary-fff hover:border-button-red cursor-pointer">
               2
             </span>
-            <span className="inline-block py-3 px-4 text-text2-black font-poppins text-2xl font-medium leading-7 border-2 border-solid rounded-r-lg border-gray-300 hover:bg-button-red hover:text-primary-fff hover:border-button-red  cursor-pointer">
+            <span className="inline-block py-2 px-3 text-text2-black font-poppins text-2xl font-medium leading-7 border-2 border-solid rounded-r-lg border-gray-300 hover:bg-button-red hover:text-primary-fff hover:border-button-red  cursor-pointer">
               +
             </span>
           </div>
